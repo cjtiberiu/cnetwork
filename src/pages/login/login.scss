@@ -1,0 +1,14 @@
+@import "../../custom-bootstrap";
+
+.login-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form {
+    &__wrapper {
+        border: 1px solid $primary;
+    }
+}
