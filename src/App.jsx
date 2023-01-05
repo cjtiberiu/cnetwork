@@ -4,6 +4,8 @@ import HomePage from './pages/HomePage/HomePage';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import decodeToken from 'jwt-decode';
 import { UserContext } from './context';
+import ProtectedUserRoute from './routes/ProtectedUserRoute/ProtectedUserRoute';
+import ProtectedAuthRoute from './routes/ProtectedAuthRoute/ProtectedAuthRoute';
 import './custom-bootstrap.scss';
 
 function App() {
@@ -45,8 +47,22 @@ function App() {
     return (
         <UserContext.Provider value={{ userData, dispatchUserEvent }}>
             <Routes>
-                <Route path="/" element={userData ? <HomePage /> : <Navigate to="/login" replace />} />
-                <Route path="/login" element={<Login />} />
+                <Route
+                    path="/"
+                    element={
+                        <ProtectedUserRoute>
+                            <HomePage />
+                        </ProtectedUserRoute>
+                    }
+                />
+                <Route
+                    path="/login"
+                    element={
+                        <ProtectedAuthRoute>
+                            <Login />
+                        </ProtectedAuthRoute>
+                    }
+                />
             </Routes>
         </UserContext.Provider>
     );
