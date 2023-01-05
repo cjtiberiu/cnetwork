@@ -3,6 +3,7 @@ import Login from './pages/Login/Login';
 import HomePage from './pages/HomePage/HomePage';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import decodeToken from 'jwt-decode';
+import { UserContext } from './context';
 import './custom-bootstrap.scss';
 
 function App() {
@@ -23,15 +24,31 @@ function App() {
         return null;
     });
 
+    const dispatchUserEvent = (actionType, payload) => {
+        switch (actionType) {
+            case 'SET_USER':
+                console.log(payload);
+                setUserData(payload);
+                return;
+            case 'REMOVE_USER':
+                setUserData(null);
+                return;
+            default:
+                return;
+        }
+    };
+
     useEffect(() => {
         console.log(userData);
     }, [userData]);
 
     return (
-        <Routes>
-            <Route path="/" element={userData ? <HomePage setUserData={setUserData} /> : <Navigate to="/login" replace />} />
-            <Route path="/login" element={<Login setUserData={setUserData} userData={userData} />} />
-        </Routes>
+        <UserContext.Provider value={{ userData, dispatchUserEvent }}>
+            <Routes>
+                <Route path="/" element={userData ? <HomePage /> : <Navigate to="/login" replace />} />
+                <Route path="/login" element={<Login />} />
+            </Routes>
+        </UserContext.Provider>
     );
 }
 

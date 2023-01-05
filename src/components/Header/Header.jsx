@@ -1,13 +1,14 @@
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../../context';
+import { Link, useNavigate } from 'react-router-dom';
 //import './Header.scss';
 
 const Header = (props) => {
+    const { dispatchUserEvent} = useContext(UserContext)
     const navigate = useNavigate();
-    const { setUserData } = props;
 
     const signOut = () => {
-        setUserData(null);
+        dispatchUserEvent('REMOVE_USER');
         localStorage.removeItem('authToken');
         navigate('/login');
     };

@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import decodeToken from 'jwt-decode';
+import { UserContext } from '../../context';
 //import './login.scss';
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [displayResult, setDisplayResult] = useState('');
-    const { setUserData, userData } = props;
+    const { userData, dispatchUserEvent } = useContext(UserContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -33,7 +34,7 @@ const Login = (props) => {
 
         if (result.userData) {
             localStorage.setItem('authToken', JSON.stringify(result.userData.token));
-            setUserData(decodeToken(result.userData.token));
+            dispatchUserEvent('SET_USER', decodeToken(result.userData.token));
             navigate('/', { replace: true });
         }
 

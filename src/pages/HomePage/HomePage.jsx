@@ -1,11 +1,9 @@
 import Header from '../../components/Header/Header';
 
-const HomePage = (props) => {
-    const { setUserData } = props;
-
+const HomePage = () => {
     return (
         <>
-            <Header setUserData={setUserData} />
+            <Header />
         </>
     );
 };
