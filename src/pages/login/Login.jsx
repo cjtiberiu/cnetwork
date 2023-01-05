@@ -2,14 +2,20 @@ import { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import decodeToken from 'jwt-decode';
-import './login.scss';
+//import './login.scss';
 
 const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [displayResult, setDisplayResult] = useState('');
-    const { setUserData } = props;
+    const { setUserData, userData } = props;
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (userData) {
+            navigate('/');
+        }
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

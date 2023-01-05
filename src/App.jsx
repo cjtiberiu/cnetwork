@@ -3,6 +3,7 @@ import Login from './pages/Login/Login';
 import HomePage from './pages/HomePage/HomePage';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import decodeToken from 'jwt-decode';
+import './custom-bootstrap.scss';
 
 function App() {
     const [userData, setUserData] = useState(() => {
@@ -28,8 +29,8 @@ function App() {
 
     return (
         <Routes>
-            <Route path="/" element={userData ? <HomePage /> : <Navigate to="/login" replace />} />
-            <Route path="/login" element={<Login setUserData={setUserData} />} />
+            <Route path="/" element={userData ? <HomePage setUserData={setUserData} /> : <Navigate to="/login" replace />} />
+            <Route path="/login" element={<Login setUserData={setUserData} userData={userData} />} />
         </Routes>
     );
 }

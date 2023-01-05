@@ -1,0 +1,16 @@
+.header {
+    .nav {
+        display: flex;
+        justify-content: center;
+        gap: 1.2rem;
+        font-size: 1.5rem;
+        padding: 1rem 0;
+        .nav-item {
+            border: none;
+            background: none;
+            color: $black;
+            text-decoration: none;
+            padding: 0;
+        }
+    }
+}

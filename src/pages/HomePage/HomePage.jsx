@@ -1,5 +1,13 @@
-const HomePage = () => {
-    return <div>Home Page</div>;
+import Header from '../../components/Header/Header';
+
+const HomePage = (props) => {
+    const { setUserData } = props;
+
+    return (
+        <>
+            <Header setUserData={setUserData} />
+        </>
+    );
 };
 
 export default HomePage;
