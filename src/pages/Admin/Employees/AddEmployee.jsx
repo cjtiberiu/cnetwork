@@ -76,16 +76,18 @@ const AddEmployee = (props) => {
                             <Form.Label htmlFor="email">Email</Form.Label>
                             <Form.Control type="email" name="email" onChange={(e) => setEmail(e.target.value)}></Form.Control>
                         </Form.Group>
-                        <Form.Label htmlFor="userType">User Type</Form.Label>
-                        <Form.Select className="mb-3" aria-label="User Types" id="userType" name="userType" value={userType} onChange={(e) => setUserType(e.target.value)}>
-                            {userTypes.map((userType) => {
-                                return (
-                                    <option value={userType.id} key={userType.id}>
-                                        {userType.type.charAt(0).toUpperCase() + userType.type.slice(1)}
-                                    </option>
-                                );
-                            })}
-                        </Form.Select>
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="userType">User Type</Form.Label>
+                            <Form.Select aria-label="User Types" id="userType" name="userType" value={userType} onChange={(e) => setUserType(e.target.value)}>
+                                {userTypes.map((userType) => {
+                                    return (
+                                        <option value={userType.id} key={userType.id}>
+                                            {userType.type.charAt(0).toUpperCase() + userType.type.slice(1)}
+                                        </option>
+                                    );
+                                })}
+                            </Form.Select>
+                        </Form.Group>
                         <Button type="submit" className="w-100">
                             Add
                         </Button>
