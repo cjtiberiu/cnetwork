@@ -9,6 +9,7 @@ const ProtectedAdminRoute = ({ children }) => {
     if (userData.userType !== 'admin') {
         return <Navigate to="/" state={{ from: location }} replace />;
     }
+
     return children;
 };
 

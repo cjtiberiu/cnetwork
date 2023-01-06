@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import Login from './pages/Login/Login';
-import HomePage from './pages/HomePage/HomePage';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import decodeToken from 'jwt-decode';
 import { UserContext } from './context';
+import LoginLayout from './layouts/LoginLayout';
+import UserLayout from './layouts/UserLayout';
+import AdminLayout from './layouts/AdminLayout';
 import ProtectedUserRoute from './routes/ProtectedUserRoute/ProtectedUserRoute';
 import ProtectedAuthRoute from './routes/ProtectedAuthRoute/ProtectedAuthRoute';
 import './custom-bootstrap.scss';
@@ -46,26 +47,30 @@ function App() {
 
     return (
         <UserContext.Provider value={{ userData, dispatchUserEvent }}>
-            <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <ProtectedUserRoute>
-                            <HomePage />
-                        </ProtectedUserRoute>
-                    }
-                />
-                <Route
-                    path="/login"
-                    element={
-                        <ProtectedAuthRoute>
-                            <Login />
-                        </ProtectedAuthRoute>
-                    }
-                />
-            </Routes>
+            <BrowserRouter>
+                <Routes>
+                    <Route
+                        exact
+                        path="/login/*"
+                        element={
+                            <ProtectedAuthRoute>
+                                <LoginLayout />
+                            </ProtectedAuthRoute>
+                        }
+                    />
+                    <Route
+                        path="/dashboard/*"
+                        element={
+                            <ProtectedUserRoute>
+                                <UserLayout />
+                            </ProtectedUserRoute>
+                        }
+                    />
+                    <Route path="/admin/*" element={<AdminLayout />} />
+                </Routes>
+            </BrowserRouter>
         </UserContext.Provider>
     );
-}
+};
 
 export default App;

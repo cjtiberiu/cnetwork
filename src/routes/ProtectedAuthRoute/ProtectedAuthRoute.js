@@ -7,8 +7,9 @@ const ProtectedAuthRoute = ({ children }) => {
     let location = useLocation();
 
     if (userData) {
-        return <Navigate to="/" state={{ from: location }} replace />;
+        return <Navigate to="/dashboard" state={{ from: location }} replace />;
     }
+    
     return children;
 };
 

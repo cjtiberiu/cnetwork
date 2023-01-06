@@ -35,7 +35,7 @@ const Login = (props) => {
         if (result.userData) {
             localStorage.setItem('authToken', JSON.stringify(result.userData.token));
             dispatchUserEvent('SET_USER', decodeToken(result.userData.token));
-            navigate('/', { replace: true });
+            navigate('/dashboard', { replace: true });
         }
 
         setDisplayResult(result.message);

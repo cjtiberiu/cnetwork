@@ -16,13 +16,13 @@ const Header = (props) => {
     return (
         <header className="header">
             <nav className="nav">
-                <Link to="/clients" className="nav-item">
+                <Link to="/dashboard/clients" className="nav-item">
                     Clients
                 </Link>
-                <Link to="/projects" className="nav-item">
+                <Link to="/dashboard/projects" className="nav-item">
                     Projects
                 </Link>
-                <Link to="/employees" className="nav-item">
+                <Link to="/dashboard/employees" className="nav-item">
                     Staff
                 </Link>
                 <button className="nav-item" onClick={signOut}>
