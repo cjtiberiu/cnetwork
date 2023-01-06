@@ -25,7 +25,7 @@ const Header = (props) => {
                 <Link to="/dashboard/employees" className="nav-item">
                     Staff
                 </Link>
-                <button className="nav-item" onClick={signOut}>
+                <button className="nav-item link-btn" onClick={signOut}>
                     Sign Out
                 </button>
             </nav>

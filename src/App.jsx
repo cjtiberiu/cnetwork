@@ -7,6 +7,7 @@ import UserLayout from './layouts/UserLayout';
 import AdminLayout from './layouts/AdminLayout';
 import ProtectedUserRoute from './routes/ProtectedUserRoute/ProtectedUserRoute';
 import ProtectedAuthRoute from './routes/ProtectedAuthRoute/ProtectedAuthRoute';
+import ProtectedAdminRoute from './routes/ProtectedAdminRoute/ProtectedAdminRoute';
 import './custom-bootstrap.scss';
 
 function App() {
@@ -66,7 +67,14 @@ function App() {
                             </ProtectedUserRoute>
                         }
                     />
-                    <Route path="/admin/*" element={<AdminLayout />} />
+                    <Route
+                        path="/admin/*"
+                        element={
+                            <ProtectedAdminRoute>
+                                <AdminLayout />
+                            </ProtectedAdminRoute>
+                        }
+                    />
                 </Routes>
             </BrowserRouter>
         </UserContext.Provider>
