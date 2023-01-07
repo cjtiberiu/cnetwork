@@ -31,7 +31,7 @@ function App() {
     const dispatchUserEvent = (actionType, payload) => {
         switch (actionType) {
             case 'SET_USER':
-                console.log(payload);
+                //console.log(payload);
                 setUserData(payload);
                 return;
             case 'REMOVE_USER':
@@ -41,10 +41,6 @@ function App() {
                 return;
         }
     };
-
-    useEffect(() => {
-        console.log(userData);
-    }, [userData]);
 
     return (
         <UserContext.Provider value={{ userData, dispatchUserEvent }}>

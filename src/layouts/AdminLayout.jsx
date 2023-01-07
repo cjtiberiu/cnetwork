@@ -10,7 +10,6 @@ import UpdateEmployee from '../pages/Admin/Employees/UpdateEmployee';
 import ShowEmployees from '../pages/Admin/Employees/ShowEmployees';
 
 const AdminLayout = (props) => {
-    console.log(props);
     return (
         <div className="admin-layout">
             <SideNav />

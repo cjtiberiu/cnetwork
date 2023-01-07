@@ -16,7 +16,6 @@ const Clients = () => {
         const result = await response.json();
 
         if (result.clients) {
-            console.log(result.clients);
             setclients(result.clients);
         }
     };

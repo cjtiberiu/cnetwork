@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Row, Col, Form, Button } from 'react-bootstrap';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const AddEmployee = (props) => {
     const [firstName, setFirstName] = useState('');
@@ -16,8 +18,8 @@ const AddEmployee = (props) => {
     }, []);
 
     useEffect(() => {
-        console.log(userType);
-    }, [userType]);
+        //console.log(userType);
+    }, [userType, contractStartDate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -75,6 +77,28 @@ const AddEmployee = (props) => {
                         <Form.Group className="mb-3">
                             <Form.Label htmlFor="email">Email</Form.Label>
                             <Form.Control type="email" name="email" onChange={(e) => setEmail(e.target.value)}></Form.Control>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="contractStartDate">Contract Start Date</Form.Label>
+                            <DatePicker
+                                dateFormat={'dd-MM-yyyy'}
+                                id="contractStartDate"
+                                name="contractStartDate"
+                                selected={contractStartDate}
+                                onChange={(date) => setContractStartDate(date)}
+                                customInput={<Form.Control />}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label htmlFor="contractEndDate">Contract End Date</Form.Label>
+                            <DatePicker
+                                dateFormat={'dd-MM-yyyy'}
+                                id="contractEndDate"
+                                name="contractEndDate"
+                                selected={contractEndDate}
+                                onChange={(date) => setContractEndDate(date)}
+                                customInput={<Form.Control />}
+                            />
                         </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Label htmlFor="userType">User Type</Form.Label>
