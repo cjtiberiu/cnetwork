@@ -11,10 +11,13 @@ const AddEmployee = (props) => {
     const [contractEndDate, setContractEndDate] = useState(null);
     const [userType, setUserType] = useState(2);
     const [userTypes, setUserTypes] = useState([]);
+    const [userRole, setUserRole] = useState(0);
+    const [userRoles, setUserRoles] = useState([]);
     const [displayMessage, setDisplayMessage] = useState('');
 
     useEffect(() => {
         getUserTypes();
+        getUserRoles();
     }, []);
 
     useEffect(() => {
@@ -43,6 +46,9 @@ const AddEmployee = (props) => {
         }
     };
 
+    // TODO: rethink getUserTypes and getUserRoles to follow DRY principle
+    // try to reduce the number of requests by storing the data on app init
+
     const getUserTypes = async () => {
         const requestOptions = {
             method: 'GET',
@@ -57,6 +63,23 @@ const AddEmployee = (props) => {
 
         if (result.userTypes) {
             setUserTypes(result.userTypes);
+        }
+    };
+
+    const getUserRoles = async () => {
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: JSON.parse(localStorage.getItem('authToken')),
+            },
+        };
+
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/getuserroles`, requestOptions);
+        const result = await response.json();
+
+        if (result.userRoles) {
+            setUserRoles(result.userRoles);
         }
     };
 
@@ -101,6 +124,19 @@ const AddEmployee = (props) => {
                             />
                         </Form.Group>
                         <Form.Group className="mb-3">
+                            <Form.Label htmlFor="userType">User Role</Form.Label>
+                            <Form.Select aria-label="User Roles" id="userRole" name="userRole" value={userRole} onChange={(e) => setUserRole(e.target.value)}>
+                                <option value="0">Select a role</option>
+                                {userRoles.map((role) => {
+                                    return (
+                                        <option value={role.id} key={role.id}>
+                                            {role.role.charAt(0).toUpperCase() + role.role.slice(1)}
+                                        </option>
+                                    );
+                                })}
+                            </Form.Select>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label htmlFor="userType">User Type</Form.Label>
                             <Form.Select aria-label="User Types" id="userType" name="userType" value={userType} onChange={(e) => setUserType(e.target.value)}>
                                 {userTypes.map((userType) => {
@@ -112,7 +148,7 @@ const AddEmployee = (props) => {
                                 })}
                             </Form.Select>
                         </Form.Group>
-                        <Button type="submit" className="w-100">
+                        <Button type="submit" className="w-100 mt-3">
                             Add
                         </Button>
                     </Form>

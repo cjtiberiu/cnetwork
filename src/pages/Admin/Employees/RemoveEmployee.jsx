@@ -73,7 +73,7 @@ const RemoveEmployee = (props) => {
                                 })}
                             </Form.Select>
                         </Form.Group>
-                        <Button type="submit" variant="danger" className="w-100">
+                        <Button type="submit" variant="danger" className="w-100 mt-3">
                             Remove
                         </Button>
                     </Form>

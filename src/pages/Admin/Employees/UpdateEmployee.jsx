@@ -4,13 +4,8 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const UpdateEmployee = (props) => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [contractStartDate, setContractStartDate] = useState(null);
-    const [contractEndDate, setContractEndDate] = useState(null);
-    const [userType, setUserType] = useState(2);
     const [userTypes, setUserTypes] = useState([]);
+    const [userRoles, setUserRoles] = useState([]);
     const [displayMessage, setDisplayMessage] = useState('');
     const [userData, setUserData] = useState({
         firstName: '',
@@ -26,6 +21,7 @@ const UpdateEmployee = (props) => {
 
     useEffect(() => {
         getUserTypes();
+        getUserRoles();
         getUsers();
     }, []);
 
@@ -41,6 +37,7 @@ const UpdateEmployee = (props) => {
                 contractStartDate: null,
                 contractEndDate: null,
                 userType: 0,
+                userRole: 0,
             });
             setDisabledInputs(true);
         }
@@ -94,6 +91,9 @@ const UpdateEmployee = (props) => {
         }
     };
 
+    // TODO: rethink getUserTypes and getUserRoles to follow DRY principle
+    // try to reduce the number of requests by storing the data on app init
+
     const getUserTypes = async () => {
         const requestOptions = {
             method: 'GET',
@@ -108,6 +108,23 @@ const UpdateEmployee = (props) => {
 
         if (result.userTypes) {
             setUserTypes(result.userTypes);
+        }
+    };
+
+    const getUserRoles = async () => {
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: JSON.parse(localStorage.getItem('authToken')),
+            },
+        };
+
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/getuserroles`, requestOptions);
+        const result = await response.json();
+
+        if (result.userRoles) {
+            setUserRoles(result.userRoles);
         }
     };
 
@@ -201,6 +218,26 @@ const UpdateEmployee = (props) => {
                             />
                         </Form.Group>
                         <Form.Group className="mb-3">
+                            <Form.Label htmlFor="userType">User Role</Form.Label>
+                            <Form.Select
+                                aria-label="User Roles"
+                                id="userRole"
+                                name="userRole"
+                                disabled={disabledInputs}
+                                value={userData.userRole}
+                                onChange={(e) => setUserData({ ...userData, userRole: e.target.value })}
+                            >
+                                <option value="0">Select User Type</option>
+                                {userRoles.map((userRole) => {
+                                    return (
+                                        <option value={userRole.id} key={userRole.id}>
+                                            {userRole.role.charAt(0).toUpperCase() + userRole.role.slice(1)}
+                                        </option>
+                                    );
+                                })}
+                            </Form.Select>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
                             <Form.Label htmlFor="userType">User Type</Form.Label>
                             <Form.Select
                                 aria-label="User Types"
@@ -220,7 +257,7 @@ const UpdateEmployee = (props) => {
                                 })}
                             </Form.Select>
                         </Form.Group>
-                        <Button type="submit" className="w-100">
+                        <Button type="submit" className="w-100 mt-3">
                             Update
                         </Button>
                     </Form>

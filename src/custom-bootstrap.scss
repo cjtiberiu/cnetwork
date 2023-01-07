@@ -70,3 +70,40 @@ $link-color: $black !default;
     font-size: 1rem;
     color: $dark;
 }
+
+.data-list {
+    .data-list-header {
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+
+    .data-item {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .list-name {
+        flex-basis: 20%;
+        max-width: 20%;
+    }
+
+    .list-email {
+        flex-basis: 20%;
+        max-width: 20%;
+    }
+
+    .list-userrole {
+        flex-basis: 20%;
+        max-width: 20%;
+    }
+
+    .list-usertype {
+        flex-basis: 20%;
+        max-width: 20%;
+    }
+
+    .list-actions {
+        flex-basis: 20%;
+        max-width: 20%;
+    }
+}
