@@ -3,14 +3,14 @@ import { UserContext } from '../../context';
 import { Navigate, useLocation } from 'react-router-dom';
 
 const ProtectedUserRoute = ({ children }) => {
-    const { userData } = useContext(UserContext);
-    let location = useLocation();
+  const { userData } = useContext(UserContext);
+  let location = useLocation();
 
-    if (!userData) {
-        return <Navigate to="/login" state={{ from: location }} replace />;
-    }
+  if (!userData) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
 
-    return children;
+  return children;
 };
 
 export default ProtectedUserRoute;
