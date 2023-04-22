@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../../context';
-import { Container, Table, Form, Row, Col } from 'react-bootstrap';
+import { Container, Table, Form, Row, Col, Button } from 'react-bootstrap';
 import { MONTHS, APP_INIT_YEAR } from '../../../utils/utils';
+import AddLogModal from './AddLogModal';
 
 const WorkLogs = () => {
   const { userData } = useContext(UserContext);
@@ -23,10 +24,10 @@ const WorkLogs = () => {
     return years;
   });
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     getWorkLogs();
-    console.log('selectedMonth', selectedMonth)
   }, [selectedMonth])
 
   const getWorkLogs = async () => {
@@ -45,6 +46,12 @@ const WorkLogs = () => {
       setWorklogs(result.data);
     }
   };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    getWorkLogs();
+  }
+  const handleShowModal = () => setShowModal(true);
 
   return (
     <>
@@ -77,6 +84,11 @@ const WorkLogs = () => {
                 </Form.Select>
               </Form.Group>
             </Col>
+            <Col xs={2}>
+              <Form.Group className="mb-3">
+                <Button onClick={handleShowModal}>Add</Button>
+              </Form.Group>
+            </Col>
           </Row>
         </Form>
         <Table striped bordered hover>
@@ -89,9 +101,14 @@ const WorkLogs = () => {
           </thead>
           <tbody>
             {worklogs.map(log => {
+              const date = new Date(log.date);
+              const year = date.getFullYear();
+              const month = (date.getMonth() + 1).toString().padStart(2, '0');
+              const day = date.getDate().toString().padStart(2, '0');
+              const formattedDate = `${day}-${month}-${year}`;
               return (
                 <tr key={log.id}>
-                  <td>{log.date}</td>
+                  <td>{formattedDate}</td>
                   <td>{log.project.name}</td>
                   <td>{log.qty}</td>
                 </tr>
@@ -99,6 +116,7 @@ const WorkLogs = () => {
             })}
           </tbody>
         </Table>
+        <AddLogModal showModal={showModal} handleClose={handleCloseModal} />
       </Container>
     </>
   )

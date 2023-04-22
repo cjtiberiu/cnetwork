@@ -35,7 +35,6 @@ function App() {
   const dispatchUserEvent = (actionType, payload) => {
     switch (actionType) {
       case 'SET_USER':
-        //console.log(payload);
         setUserData(payload);
         return;
       case 'REMOVE_USER':
