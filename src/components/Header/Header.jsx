@@ -22,6 +22,9 @@ const Header = (props) => {
                 <Link to="/dashboard/projects" className="nav-item">
                     Projects
                 </Link>
+                <Link to="/dashboard/logs" className="nav-item">
+                    Work Logs
+                </Link>
                 <Link to="/dashboard/employees" className="nav-item">
                     Staff
                 </Link>
