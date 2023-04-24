@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import { Container, Button } from 'react-bootstrap';
 
 const ShowEmployees = (props) => {
   const [users, setUsers] = useState([]);
@@ -30,7 +30,7 @@ const ShowEmployees = (props) => {
   };
 
   return (
-    <div>
+    <Container>
       <h1>Show Employees</h1>
       <ul className="list-unstyled data-list mt-3">
         <li className="data-list-header data-item mb-2">
@@ -54,7 +54,7 @@ const ShowEmployees = (props) => {
           );
         })}
       </ul>
-    </div>
+    </Container>
   );
 };
 

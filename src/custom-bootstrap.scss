@@ -34,19 +34,19 @@ $link-color: $black !default;
     }
 }
 
-.admin-layout {
-    display: flex;
+// .admin-layout {
+//     display: flex;
 
-    .sidenav-wrapper {
-        flex-basis: 20%;
-        max-width: 20%;
-    }
+//     .sidenav-wrapper {
+//         flex-basis: 20%;
+//         max-width: 20%;
+//     }
 
-    .page-content {
-        flex-grow: 1;
-        padding: 2rem;
-    }
-}
+//     .page-content {
+//         flex-grow: 1;
+//         padding: 2rem;
+//     }
+// }
 
 .sidenav {
     display: flex;
@@ -106,4 +106,8 @@ $link-color: $black !default;
         flex-basis: 20%;
         max-width: 20%;
     }
+}
+
+.main {
+    padding-top: 1.5rem;
 }

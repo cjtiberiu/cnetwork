@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
 const RemoveEmployee = (props) => {
   const [users, setUsers] = useState([]);
@@ -56,7 +56,7 @@ const RemoveEmployee = (props) => {
   };
 
   return (
-    <div>
+    <Container>
       <h1>Remove Employee</h1>
       <Row>
         <Col lg={{ span: 4 }}>
@@ -80,7 +80,7 @@ const RemoveEmployee = (props) => {
           <p>{displayMessage}</p>
         </Col>
       </Row>
-    </div>
+    </Container>
   );
 };
 

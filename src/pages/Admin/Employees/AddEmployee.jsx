@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -84,7 +84,7 @@ const AddEmployee = (props) => {
   };
 
   return (
-    <div>
+    <Container>
       <h1>Add Employee</h1>
       <Row>
         <Col lg={{ span: 4 }}>
@@ -155,7 +155,7 @@ const AddEmployee = (props) => {
           <p>{displayMessage}</p>
         </Col>
       </Row>
-    </div>
+    </Container>
   );
 };
 

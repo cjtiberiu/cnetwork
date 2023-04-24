@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Collapse } from 'react-bootstrap';
+import { Collapse, Button } from 'react-bootstrap';
+import './SideNav.scss';
 
 const SideNav = () => {
   const [showClientOptions, setShowClientOptions] = useState(false);
   const [showProjectOptions, setShowProjectOptions] = useState(false);
   const [showEmployeesOptions, setShowEmployeesOptions] = useState(false);
+  const [showSideNav, setShowSideNav] = useState(false);
 
   return (
-    <div className="sidenav-wrapper">
+    <div className={`sidenav-wrapper ${showSideNav ? 'show' : ''}`} onMouseOver={() => setShowSideNav(true)} onMouseOut={() => setShowSideNav(false)}>
       <nav className="sidenav">
         <Link to="/dashboard">Home</Link>
         <button className="link-btn" onClick={() => setShowClientOptions(!showClientOptions)}>
@@ -45,6 +47,7 @@ const SideNav = () => {
           </div>
         </Collapse>
       </nav>
+      <Button className="sidenav-toggle">Open Admin Panel</Button>
     </div>
   );
 };
