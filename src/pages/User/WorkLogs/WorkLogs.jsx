@@ -3,6 +3,7 @@ import { UserContext } from '../../../context';
 import { Container, Table, Form, Row, Col, Button } from 'react-bootstrap';
 import { MONTHS, APP_INIT_YEAR } from '../../../utils/utils';
 import AddLogModal from './AddLogModal';
+import EditLogModal from './EditLogModal';
 
 const WorkLogs = () => {
   const { userData } = useContext(UserContext);
@@ -24,7 +25,9 @@ const WorkLogs = () => {
     return years;
   });
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-  const [showModal, setShowModal] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedLog, setSelectedLog] = useState(null);
 
   useEffect(() => {
     getWorkLogs();
@@ -47,11 +50,20 @@ const WorkLogs = () => {
     }
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
+  const handleCloseAddModal = () => {
+    setShowAddModal(false);
     getWorkLogs();
   }
-  const handleShowModal = () => setShowModal(true);
+  const handleShowAddModal = () => setShowAddModal(true);
+
+  const handleCloseEditModal = () => {
+    setShowEditModal(false);
+    getWorkLogs();
+  }
+  const handleShowEditModal = (logData) => {
+    setSelectedLog(logData);
+    setShowEditModal(true);
+  }
 
   return (
     <>
@@ -86,7 +98,7 @@ const WorkLogs = () => {
             </Col>
             <Col xs={2}>
               <Form.Group className="mb-3">
-                <Button onClick={handleShowModal}>Add</Button>
+                <Button onClick={handleShowAddModal}>Add</Button>
               </Form.Group>
             </Col>
           </Row>
@@ -107,7 +119,7 @@ const WorkLogs = () => {
               const day = date.getDate().toString().padStart(2, '0');
               const formattedDate = `${day}-${month}-${year}`;
               return (
-                <tr key={log.id}>
+                <tr key={log.id} onClick={() => handleShowEditModal(log)}>
                   <td>{formattedDate}</td>
                   <td>{log.project.name}</td>
                   <td>{log.qty}</td>
@@ -116,7 +128,8 @@ const WorkLogs = () => {
             })}
           </tbody>
         </Table>
-        <AddLogModal showModal={showModal} handleClose={handleCloseModal} />
+        <AddLogModal showModal={showAddModal} handleClose={handleCloseAddModal} />
+        <EditLogModal showModal={showEditModal} handleClose={handleCloseEditModal} selectedLog={selectedLog} />
       </Container>
     </>
   )
