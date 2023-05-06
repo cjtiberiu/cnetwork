@@ -1,7 +1,7 @@
 const UpdateClient = () => {
   return (
     <div>
-      <h1>Update Client</h1>
+      <h1>Modifica Client</h1>
     </div>
   );
 };

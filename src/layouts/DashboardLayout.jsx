@@ -8,7 +8,7 @@ import WorkLogs from '../pages/User/WorkLogs/WorkLogs';
 import AddClient from '../pages/Admin/Clients/AddClient';
 import RemoveClient from '../pages/Admin/Clients/RemoveClient';
 import UpdateClient from '../pages/Admin/Clients/UpdateClient';
-import ShowClients from '../pages/Admin/Clients/ShowClients';
+import ListClients from '../pages/Admin/Clients/ListClients';
 import AddEmployee from '../pages/Admin/Employees/AddEmployee';
 import RemoveEmployee from '../pages/Admin/Employees/RemoveEmployee';
 import UpdateEmployee from '../pages/Admin/Employees/UpdateEmployee';
@@ -66,7 +66,7 @@ const UserLayout = (props) => {
             path={`/admin/clients/show`} 
             element={
               <ProtectedAdminRoute>
-                <ShowClients />
+                <ListClients />
               </ProtectedAdminRoute>
             } 
           />

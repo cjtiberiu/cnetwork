@@ -1,7 +1,7 @@
 const RemoveClient = () => {
   return (
     <div>
-      <h1>Remove Client</h1>
+      <h1>Sterge Client</h1>
     </div>
   );
 };
