@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 
 const AddClient = (props) => {
   const [formData, setFormData] = useState({
@@ -79,7 +77,7 @@ const AddClient = (props) => {
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label htmlFor="name">Client</Form.Label>
-              <Form.Control type="text" name="name" onChange={handleInputChange}></Form.Control>
+              <Form.Control type="text" name="name" value={formData.name} onChange={handleInputChange}></Form.Control>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label htmlFor="countryId">Tara</Form.Label>
