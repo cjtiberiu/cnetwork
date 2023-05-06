@@ -3,12 +3,12 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import decodeToken from 'jwt-decode';
 import { UserContext } from './context';
 import LoginLayout from './layouts/LoginLayout';
-import UserLayout from './layouts/UserLayout';
+import UserLayout from './layouts/DashboardLayout';
 import AdminLayout from './layouts/AdminLayout';
 import ProtectedUserRoute from './routes/ProtectedUserRoute/ProtectedUserRoute';
 import ProtectedAuthRoute from './routes/ProtectedAuthRoute/ProtectedAuthRoute';
 import ProtectedAdminRoute from './routes/ProtectedAdminRoute/ProtectedAdminRoute';
-import './custom-bootstrap.scss';
+import "./custom-bootstrap.scss";
 
 function App() {
   const [userData, setUserData] = useState(() => {
@@ -66,14 +66,14 @@ function App() {
               </ProtectedUserRoute>
             }
           />
-          <Route
+          {/* <Route
             path="/admin/*"
             element={
               <ProtectedAdminRoute>
                 <AdminLayout />
               </ProtectedAdminRoute>
             }
-          />
+          /> */}
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>

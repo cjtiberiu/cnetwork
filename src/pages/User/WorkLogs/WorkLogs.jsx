@@ -119,7 +119,7 @@ const WorkLogs = () => {
               const day = date.getDate().toString().padStart(2, '0');
               const formattedDate = `${day}-${month}-${year}`;
               return (
-                <tr key={log.id} onClick={() => handleShowEditModal(log)}>
+                <tr key={log.id} onClick={() => handleShowEditModal(log)} style={{ cursor: "pointer" }}>
                   <td>{formattedDate}</td>
                   <td>{log.project.name}</td>
                   <td>{log.qty}</td>

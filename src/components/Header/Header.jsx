@@ -21,22 +21,22 @@ const Header = (props) => {
           <h3>LOGO</h3>
         </div>
         <nav className="nav">
-          <Link to="/dashboard/clients" className="nav-item">
-            Clients
+          <Link to="/dashboard/user/clients" className="nav-item">
+            Clienti
           </Link>
-          <Link to="/dashboard/projects" className="nav-item">
-            Projects
+          <Link to="/dashboard/user/projects" className="nav-item">
+            Proiecte
           </Link>
-          <Link to="/dashboard/logs" className="nav-item">
-            Work Logs
+          <Link to="/dashboard/user/logs" className="nav-item">
+            Ore Lucrate
           </Link>
-          <Link to="/dashboard/employees" className="nav-item">
-            Staff
+          <Link to="/dashboard/user/employees" className="nav-item">
+            Echipa
           </Link>
         </nav>
         <nav className="utility-nav">
           <Button onClick={signOut}>
-            Sign Out
+            Delogare
           </Button>
         </nav>
       </Container>

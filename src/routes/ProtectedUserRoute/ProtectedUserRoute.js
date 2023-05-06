@@ -6,6 +6,8 @@ const ProtectedUserRoute = ({ children }) => {
   const { userData } = useContext(UserContext);
   let location = useLocation();
 
+  console.log('PROTECTED USER ROUTE')
+
   if (!userData) {
     return <Navigate to="/login" state={{ from: location }} replace />;
   }

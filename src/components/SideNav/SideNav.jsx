@@ -11,43 +11,44 @@ const SideNav = () => {
 
   return (
     <div className={`sidenav-wrapper ${showSideNav ? 'show' : ''}`} onMouseOver={() => setShowSideNav(true)} onMouseOut={() => setShowSideNav(false)}>
+      <h3>Panou Administrare</h3>
       <nav className="sidenav">
         <Link to="/dashboard">Home</Link>
         <button className="link-btn" onClick={() => setShowClientOptions(!showClientOptions)}>
-          Clients
+          Clienti
         </button>
         <Collapse in={showClientOptions}>
           <div className="collapse-nav">
-            <Link to="/admin/clients/add">Add Client</Link>
-            <Link to="/admin/clients/remove">Remove Client</Link>
-            <Link to="/admin/clients/update">Update Client</Link>
-            <Link to="/admin/clients/show">Show Clients</Link>
+            <Link to="/dashboard/admin/clients/add">Adauga Client</Link>
+            <Link to="/dashboard/admin/clients/remove">Sterge Client</Link>
+            <Link to="/dashboard/admin/clients/update">Modifica Client</Link>
+            <Link to="/dashboard/admin/clients/show">Lista Clienti</Link>
           </div>
         </Collapse>
         <button className="link-btn" onClick={() => setShowProjectOptions(!showProjectOptions)}>
-          Projects
+          Proiecte
         </button>
         <Collapse in={showProjectOptions}>
           <div className="collapse-nav">
-            <Link to="/admin/projects/add">Add Project</Link>
-            <Link to="/admin/projects/remove">Remove Project</Link>
-            <Link to="/admin/projects/update">Update Project</Link>
-            <Link to="/admin/projects/show">Show Projects</Link>
+            <Link to="/dashboard/admin/projects/add">Adauga Project</Link>
+            <Link to="/dashboard/admin/projects/remove">Sterge Project</Link>
+            <Link to="/dashboard/admin/projects/update">Modifica Project</Link>
+            <Link to="/dashboard/admin/projects/show">Lista Proiecte</Link>
           </div>
         </Collapse>
         <button className="link-btn" onClick={() => setShowEmployeesOptions(!showEmployeesOptions)}>
-          Employees
+          Angajati
         </button>
         <Collapse in={showEmployeesOptions}>
           <div className="collapse-nav">
-            <Link to="/admin/employees/add">Add Employee</Link>
-            <Link to="/admin/employees/remove">Remove Employee</Link>
-            <Link to="/admin/employees/update">Update Employee</Link>
-            <Link to="/admin/employees/show">Show Employees</Link>
+            <Link to="/dashboard/admin/employees/add">Adauga Angajat</Link>
+            <Link to="/dashboard/admin/employees/remove">Sterge Angajat</Link>
+            <Link to="/dashboard/admin/employees/update">Modifica Angajat</Link>
+            <Link to="/dashboard/admin/employees/show">Lista Angajati</Link>
           </div>
         </Collapse>
       </nav>
-      <Button className="sidenav-toggle">Open Admin Panel</Button>
+      {/* <Button className="sidenav-toggle">Open Admin Panel</Button> */}
     </div>
   );
 };
