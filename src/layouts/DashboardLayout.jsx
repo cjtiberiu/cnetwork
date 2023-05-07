@@ -9,6 +9,10 @@ import AddClient from '../pages/Admin/Clients/AddClient';
 import RemoveClient from '../pages/Admin/Clients/RemoveClient';
 import UpdateClient from '../pages/Admin/Clients/UpdateClient';
 import ListClients from '../pages/Admin/Clients/ListClients';
+import AddProject from '../pages/Admin/Projects/AddProject';
+import RemoveProject from '../pages/Admin/Projects/RemoveProject';
+import UpdateProject from '../pages/Admin/Projects/UpdateProject';
+import ListProjects from '../pages/Admin/Projects/ListProjects';
 import AddEmployee from '../pages/Admin/Employees/AddEmployee';
 import RemoveEmployee from '../pages/Admin/Employees/RemoveEmployee';
 import UpdateEmployee from '../pages/Admin/Employees/UpdateEmployee';
@@ -103,6 +107,42 @@ const UserLayout = (props) => {
             element={
               <ProtectedAdminRoute>
                 <ShowEmployees />
+              </ProtectedAdminRoute>
+            } 
+          />
+          <Route 
+            exact 
+            path={`/admin/projects/add`} 
+            element={
+              <ProtectedAdminRoute>
+                <AddProject />
+              </ProtectedAdminRoute>
+            } 
+          />
+          <Route 
+            exact 
+            path={`/admin/projects/remove`} 
+            element={
+              <ProtectedAdminRoute>
+                <RemoveProject />
+              </ProtectedAdminRoute>
+            } 
+          />
+          <Route 
+            exact 
+            path={`/admin/projects/update`} 
+            element={
+              <ProtectedAdminRoute>
+                <UpdateProject />
+              </ProtectedAdminRoute>
+            } 
+          />
+          <Route 
+            exact 
+            path={`/admin/projects/list`} 
+            element={
+              <ProtectedAdminRoute>
+                <ListProjects />
               </ProtectedAdminRoute>
             } 
           />

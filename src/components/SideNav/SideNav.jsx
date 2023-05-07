@@ -33,7 +33,7 @@ const SideNav = () => {
             <Link to="/dashboard/admin/projects/add">Adauga Project</Link>
             <Link to="/dashboard/admin/projects/remove">Sterge Project</Link>
             <Link to="/dashboard/admin/projects/update">Modifica Project</Link>
-            <Link to="/dashboard/admin/projects/show">Lista Proiecte</Link>
+            <Link to="/dashboard/admin/projects/list">Lista Proiecte</Link>
           </div>
         </Collapse>
         <button className="link-btn" onClick={() => setShowEmployeesOptions(!showEmployeesOptions)}>
