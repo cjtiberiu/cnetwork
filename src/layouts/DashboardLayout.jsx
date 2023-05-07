@@ -13,6 +13,7 @@ import AddProject from '../pages/Admin/Projects/AddProject';
 import RemoveProject from '../pages/Admin/Projects/RemoveProject';
 import UpdateProject from '../pages/Admin/Projects/UpdateProject';
 import ListProjects from '../pages/Admin/Projects/ListProjects';
+import AssignProject from '../pages/Admin/Projects/AssignProject';
 import AddEmployee from '../pages/Admin/Employees/AddEmployee';
 import RemoveEmployee from '../pages/Admin/Employees/RemoveEmployee';
 import UpdateEmployee from '../pages/Admin/Employees/UpdateEmployee';
@@ -143,6 +144,15 @@ const UserLayout = (props) => {
             element={
               <ProtectedAdminRoute>
                 <ListProjects />
+              </ProtectedAdminRoute>
+            } 
+          />
+          <Route 
+            exact 
+            path={`/admin/projects/assign`} 
+            element={
+              <ProtectedAdminRoute>
+                <AssignProject />
               </ProtectedAdminRoute>
             } 
           />
