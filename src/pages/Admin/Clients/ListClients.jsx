@@ -27,20 +27,20 @@ const ShowEmployees = (props) => {
 
   return (
     <Container>
-      <h1>Show Employees</h1>
+      <h1>Lista Clienti</h1>
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Country</th>
-            <th>Currency</th>
-            <th>Projects</th>
+            <th>Nume</th>
+            <th>Tara</th>
+            <th>Moneda</th>
+            <th>Numarul Proiectelor</th>
           </tr>
         </thead>
         <tbody>
           {clients.map((client) => {
             return (
-              <tr>
+              <tr key={client.id}>
                 <td>{client.name}</td>
                 <td>{client.country.name}</td>
                 <td>{client.country.currency}</td>
