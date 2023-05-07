@@ -85,7 +85,7 @@ const AssignProject = () => {
       body: JSON.stringify({ userId: selectedUserId, projectId: selectedProjectId }),
     };
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/assignproject`, requestOptions);
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/addusertoproject`, requestOptions);
     const result = await response.json();
 
     if (result.message) {
@@ -94,6 +94,23 @@ const AssignProject = () => {
 
     if (response.status == 200) {
       console.log('success');
+      getUserProjects();
+    }
+  }
+
+  const removeUserFromProject = async (userId, projectId) => {
+    const requestOptions = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: JSON.parse(localStorage.getItem('authToken')),
+      },
+    };
+
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/removeuserfromproject/${userId}/${projectId}`, requestOptions);
+    const result = await response.json();
+
+    if (response.status == 200) {
       getUserProjects();
     }
   }
@@ -140,14 +157,18 @@ const AssignProject = () => {
                 <tr>
                   <th>Proiect</th>
                   <th>Client</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 {selectedUserProjects.map((project) => {
                   return (
-                    <tr key={project.id}>
+                    <tr key={project.id} className="align-middle">
                       <td>{project.name}</td>
                       <td>{project.client.name}</td>
+                      <td className="d-flex justify-content-center">
+                        <Button variant="danger" onClick={() => removeUserFromProject(selectedUserId, project.id)}>Delete</Button>
+                      </td>
                     </tr>
                   );
                 })}
