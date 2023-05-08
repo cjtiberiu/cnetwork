@@ -22,6 +22,7 @@ import ProtectedUserRoute from '../routes/ProtectedUserRoute/ProtectedUserRoute'
 import ProtectedAdminRoute from '../routes/ProtectedAdminRoute/ProtectedAdminRoute';
 import { UserContext } from '../context';
 import ProjectDetails from '../pages/Admin/Projects/ProjectDetails';
+import ClientDetails from '../pages/Admin/Clients/ClientDetails';
 
 const UserLayout = (props) => {
   const { userData } = useContext(UserContext);
@@ -73,6 +74,15 @@ const UserLayout = (props) => {
             element={
               <ProtectedAdminRoute>
                 <ListClients />
+              </ProtectedAdminRoute>
+            } 
+          />
+          <Route 
+            exact 
+            path={`/admin/clients/client/:clientId`} 
+            element={
+              <ProtectedAdminRoute>
+                <ClientDetails />
               </ProtectedAdminRoute>
             } 
           />
