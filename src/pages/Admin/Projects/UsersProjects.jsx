@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Container, Row, Col, Table, Form, Button } from 'react-bootstrap';
 
-const AssignProject = () => {
+const UsersProjects = () => {
   const [users, setUsers] = useState([]);
   const [projects, setProjects] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(0);
@@ -181,4 +181,4 @@ const AssignProject = () => {
   )
 };
 
-export default AssignProject;
+export default UsersProjects;

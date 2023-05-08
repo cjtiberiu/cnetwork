@@ -34,7 +34,7 @@ const SideNav = () => {
             <Link to="/dashboard/admin/projects/remove">Sterge Project</Link>
             <Link to="/dashboard/admin/projects/update">Modifica Project</Link>
             <Link to="/dashboard/admin/projects/list">Lista Proiecte</Link>
-            <Link to="/dashboard/admin/projects/assign">Asignare Proiect</Link>
+            <Link to="/dashboard/admin/projects/assign">Proiecte Utilizatori</Link>
           </div>
         </Collapse>
         <button className="link-btn" onClick={() => setShowEmployeesOptions(!showEmployeesOptions)}>

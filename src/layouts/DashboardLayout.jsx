@@ -13,7 +13,7 @@ import AddProject from '../pages/Admin/Projects/AddProject';
 import RemoveProject from '../pages/Admin/Projects/RemoveProject';
 import UpdateProject from '../pages/Admin/Projects/UpdateProject';
 import ListProjects from '../pages/Admin/Projects/ListProjects';
-import AssignProject from '../pages/Admin/Projects/AssignProject';
+import UsersProjects from '../pages/Admin/Projects/UsersProjects';
 import AddEmployee from '../pages/Admin/Employees/AddEmployee';
 import RemoveEmployee from '../pages/Admin/Employees/RemoveEmployee';
 import UpdateEmployee from '../pages/Admin/Employees/UpdateEmployee';
@@ -21,6 +21,7 @@ import ShowEmployees from '../pages/Admin/Employees/ShowEmployees';
 import ProtectedUserRoute from '../routes/ProtectedUserRoute/ProtectedUserRoute';
 import ProtectedAdminRoute from '../routes/ProtectedAdminRoute/ProtectedAdminRoute';
 import { UserContext } from '../context';
+import ProjectDetails from '../pages/Admin/Projects/ProjectDetails';
 
 const UserLayout = (props) => {
   const { userData } = useContext(UserContext);
@@ -152,7 +153,16 @@ const UserLayout = (props) => {
             path={`/admin/projects/assign`} 
             element={
               <ProtectedAdminRoute>
-                <AssignProject />
+                <UsersProjects />
+              </ProtectedAdminRoute>
+            } 
+          />
+          <Route 
+            exact 
+            path={`/admin/projects/project/:projectId`} 
+            element={
+              <ProtectedAdminRoute>
+                <ProjectDetails />
               </ProtectedAdminRoute>
             } 
           />
