@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Container, Row, Col, Table } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const ProjectDetails = (props) => {
   const { projectId } = useParams();
@@ -46,7 +46,9 @@ const ProjectDetails = (props) => {
                 return (
                   <tr key={user.id}>
                     <td>{user.firstName} {user.lastName}</td>
-                    <td>{user.email}</td>
+                    <td>
+                      <Link to={`/dashboard/admin/users/user/${user.id}`}>{user.email}</Link>
+                    </td>
                     <td>{user.userRole}</td>
                   </tr>
                 );

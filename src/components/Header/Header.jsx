@@ -30,7 +30,7 @@ const Header = (props) => {
           <Link to="/dashboard/user/logs" className="nav-item">
             Ore Lucrate
           </Link>
-          <Link to="/dashboard/user/employees" className="nav-item">
+          <Link to="/dashboard/user/users" className="nav-item">
             Echipa
           </Link>
         </nav>

@@ -21,10 +21,10 @@ const AdminLayout = (props) => {
           <Route exact path={`/clients/remove`} element={<RemoveClient />} />
           <Route exact path={`/clients/update`} element={<UpdateClient />} />
           <Route exact path={`/clients/show`} element={<ListClients />} />
-          <Route exact path={`/employees/add`} element={<AddUser />} />
-          <Route exact path={`/employees/remove`} element={<RemoveUser />} />
-          <Route exact path={`/employees/update`} element={<UpdateUser />} />
-          <Route exact path={`/employees/show`} element={<ListUsers />} />
+          <Route exact path={`/users/add`} element={<AddUser />} />
+          <Route exact path={`/users/remove`} element={<RemoveUser />} />
+          <Route exact path={`/users/update`} element={<UpdateUser />} />
+          <Route exact path={`/users/show`} element={<ListUsers />} />
         </Routes>
       </main>
     </>

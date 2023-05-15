@@ -23,6 +23,7 @@ import ProtectedAdminRoute from '../routes/ProtectedAdminRoute/ProtectedAdminRou
 import { UserContext } from '../context';
 import ProjectDetails from '../pages/Admin/Projects/ProjectDetails';
 import ClientDetails from '../pages/Admin/Clients/ClientDetails';
+import UserDetails from '../pages/Admin/Users/UserDetails';
 
 const UserLayout = (props) => {
   const { userData } = useContext(UserContext);
@@ -88,7 +89,7 @@ const UserLayout = (props) => {
           />
           <Route 
             exact 
-            path={`/admin/employees/add`} 
+            path={`/admin/users/add`} 
             element={
               <ProtectedAdminRoute>
                 <AddUser />
@@ -97,7 +98,7 @@ const UserLayout = (props) => {
           />
           <Route 
             exact 
-            path={`/admin/employees/remove`} 
+            path={`/admin/users/remove`} 
             element={
               <ProtectedAdminRoute>
                 <RemoveUser />
@@ -106,7 +107,7 @@ const UserLayout = (props) => {
           />
           <Route 
             exact 
-            path={`/admin/employees/update`} 
+            path={`/admin/users/update`} 
             element={
               <ProtectedAdminRoute>
                 <UpdateUser />
@@ -115,10 +116,19 @@ const UserLayout = (props) => {
           />
           <Route 
             exact 
-            path={`/admin/employees/show`} 
+            path={`/admin/users/show`} 
             element={
               <ProtectedAdminRoute>
                 <ListUsers />
+              </ProtectedAdminRoute>
+            } 
+          />
+          <Route 
+            exact 
+            path={`/admin/users/user/:userId`} 
+            element={
+              <ProtectedAdminRoute>
+                <UserDetails />
               </ProtectedAdminRoute>
             } 
           />

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Container, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const ListUsers = (props) => {
   const [users, setUsers] = useState([]);
@@ -31,7 +32,7 @@ const ListUsers = (props) => {
 
   return (
     <Container>
-      <h1>Show Employees</h1>
+      <h1>Show users</h1>
       <ul className="list-unstyled data-list mt-3">
         <li className="data-list-header data-item mb-2">
           <span className="list-name">Name</span>
@@ -48,7 +49,7 @@ const ListUsers = (props) => {
               <span className="list-userrole">{user.userRole}</span>
               <span className="list-usertype">{user.userType}</span>
               <span className="list-actions d-flex justify-content-end">
-                <Button>Detalii</Button>
+                <Link to={`/dashboard/admin/users/user/${user.id}`} className="btn btn-primary">Detalii</Link>
               </span>
             </li>
           );

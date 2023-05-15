@@ -42,10 +42,10 @@ const SideNav = () => {
         </button>
         <Collapse in={ListUsersOptions}>
           <div className="collapse-nav">
-            <Link to="/dashboard/admin/employees/add">Adauga Angajat</Link>
-            <Link to="/dashboard/admin/employees/remove">Sterge Angajat</Link>
-            <Link to="/dashboard/admin/employees/update">Modifica Angajat</Link>
-            <Link to="/dashboard/admin/employees/show">Lista Angajati</Link>
+            <Link to="/dashboard/admin/users/add">Adauga Angajat</Link>
+            <Link to="/dashboard/admin/users/remove">Sterge Angajat</Link>
+            <Link to="/dashboard/admin/users/update">Modifica Angajat</Link>
+            <Link to="/dashboard/admin/users/show">Lista Angajati</Link>
           </div>
         </Collapse>
       </nav>
