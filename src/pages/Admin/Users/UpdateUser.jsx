@@ -3,7 +3,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const UpdateEmployee = (props) => {
+const UpdateUser = (props) => {
   const [userTypes, setUserTypes] = useState([]);
   const [userRoles, setUserRoles] = useState([]);
   const [displayMessage, setDisplayMessage] = useState('');
@@ -268,4 +268,4 @@ const UpdateEmployee = (props) => {
   );
 };
 
-export default UpdateEmployee;
+export default UpdateUser;

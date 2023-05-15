@@ -6,7 +6,7 @@ import './SideNav.scss';
 const SideNav = () => {
   const [showClientOptions, setShowClientOptions] = useState(false);
   const [showProjectOptions, setShowProjectOptions] = useState(false);
-  const [showEmployeesOptions, setShowEmployeesOptions] = useState(false);
+  const [ListUsersOptions, setListUsersOptions] = useState(false);
   const [showSideNav, setShowSideNav] = useState(false);
 
   return (
@@ -37,10 +37,10 @@ const SideNav = () => {
             <Link to="/dashboard/admin/projects/assign">Proiecte Utilizatori</Link>
           </div>
         </Collapse>
-        <button className="link-btn" onClick={() => setShowEmployeesOptions(!showEmployeesOptions)}>
+        <button className="link-btn" onClick={() => setListUsersOptions(!ListUsersOptions)}>
           Angajati
         </button>
-        <Collapse in={showEmployeesOptions}>
+        <Collapse in={ListUsersOptions}>
           <div className="collapse-nav">
             <Link to="/dashboard/admin/employees/add">Adauga Angajat</Link>
             <Link to="/dashboard/admin/employees/remove">Sterge Angajat</Link>

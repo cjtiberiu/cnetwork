@@ -14,10 +14,10 @@ import RemoveProject from '../pages/Admin/Projects/RemoveProject';
 import UpdateProject from '../pages/Admin/Projects/UpdateProject';
 import ListProjects from '../pages/Admin/Projects/ListProjects';
 import UsersProjects from '../pages/Admin/Projects/UsersProjects';
-import AddEmployee from '../pages/Admin/Employees/AddEmployee';
-import RemoveEmployee from '../pages/Admin/Employees/RemoveEmployee';
-import UpdateEmployee from '../pages/Admin/Employees/UpdateEmployee';
-import ShowEmployees from '../pages/Admin/Employees/ShowEmployees';
+import AddUser from '../pages/Admin/Users/AddUser';
+import RemoveUser from '../pages/Admin/Users/RemoveUser';
+import UpdateUser from '../pages/Admin/Users/UpdateUser';
+import ListUsers from '../pages/Admin/Users/ListUsers';
 import ProtectedUserRoute from '../routes/ProtectedUserRoute/ProtectedUserRoute';
 import ProtectedAdminRoute from '../routes/ProtectedAdminRoute/ProtectedAdminRoute';
 import { UserContext } from '../context';
@@ -91,7 +91,7 @@ const UserLayout = (props) => {
             path={`/admin/employees/add`} 
             element={
               <ProtectedAdminRoute>
-                <AddEmployee />
+                <AddUser />
               </ProtectedAdminRoute>
             } 
           />
@@ -100,7 +100,7 @@ const UserLayout = (props) => {
             path={`/admin/employees/remove`} 
             element={
               <ProtectedAdminRoute>
-                <RemoveEmployee />
+                <RemoveUser />
               </ProtectedAdminRoute>
             } 
           />
@@ -109,7 +109,7 @@ const UserLayout = (props) => {
             path={`/admin/employees/update`} 
             element={
               <ProtectedAdminRoute>
-                <UpdateEmployee />
+                <UpdateUser />
               </ProtectedAdminRoute>
             } 
           />
@@ -118,7 +118,7 @@ const UserLayout = (props) => {
             path={`/admin/employees/show`} 
             element={
               <ProtectedAdminRoute>
-                <ShowEmployees />
+                <ListUsers />
               </ProtectedAdminRoute>
             } 
           />

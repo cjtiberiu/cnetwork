@@ -5,10 +5,10 @@ import AddClient from '../pages/Admin/Clients/AddClient';
 import RemoveClient from '../pages/Admin/Clients/RemoveClient';
 import UpdateClient from '../pages/Admin/Clients/UpdateClient';
 import ListClients from '../pages/Admin/Clients/ListClients';
-import AddEmployee from '../pages/Admin/Employees/AddEmployee';
-import RemoveEmployee from '../pages/Admin/Employees/RemoveEmployee';
-import UpdateEmployee from '../pages/Admin/Employees/UpdateEmployee';
-import ShowEmployees from '../pages/Admin/Employees/ShowEmployees';
+import AddUser from '../pages/Admin/Users/AddUser';
+import RemoveUser from '../pages/Admin/Users/RemoveUser';
+import UpdateUser from '../pages/Admin/Users/UpdateUser';
+import ListUsers from '../pages/Admin/Users/ListUsers';
 
 const AdminLayout = (props) => {
   return (
@@ -21,10 +21,10 @@ const AdminLayout = (props) => {
           <Route exact path={`/clients/remove`} element={<RemoveClient />} />
           <Route exact path={`/clients/update`} element={<UpdateClient />} />
           <Route exact path={`/clients/show`} element={<ListClients />} />
-          <Route exact path={`/employees/add`} element={<AddEmployee />} />
-          <Route exact path={`/employees/remove`} element={<RemoveEmployee />} />
-          <Route exact path={`/employees/update`} element={<UpdateEmployee />} />
-          <Route exact path={`/employees/show`} element={<ShowEmployees />} />
+          <Route exact path={`/employees/add`} element={<AddUser />} />
+          <Route exact path={`/employees/remove`} element={<RemoveUser />} />
+          <Route exact path={`/employees/update`} element={<UpdateUser />} />
+          <Route exact path={`/employees/show`} element={<ListUsers />} />
         </Routes>
       </main>
     </>

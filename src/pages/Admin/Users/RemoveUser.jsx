@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
-const RemoveEmployee = (props) => {
+const RemoveUser = (props) => {
   const [users, setUsers] = useState([]);
   const [selectedUserID, setSelectedUserID] = useState(0);
   const [displayMessage, setDisplayMessage] = useState('');
@@ -84,4 +84,4 @@ const RemoveEmployee = (props) => {
   );
 };
 
-export default RemoveEmployee;
+export default RemoveUser;

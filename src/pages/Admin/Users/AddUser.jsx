@@ -3,7 +3,7 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const AddEmployee = (props) => {
+const AddUser = (props) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -159,4 +159,4 @@ const AddEmployee = (props) => {
   );
 };
 
-export default AddEmployee;
+export default AddUser;

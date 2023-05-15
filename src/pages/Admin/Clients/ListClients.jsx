@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Container, Table } from 'react-bootstrap';
 
-const ShowEmployees = (props) => {
+const ListUsers = (props) => {
   const [clients, setClients] = useState([]);
 
   useEffect(() => {
@@ -54,4 +54,4 @@ const ShowEmployees = (props) => {
   );
 };
 
-export default ShowEmployees;
+export default ListUsers;
