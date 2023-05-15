@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../../context';
-import { Container, Table, Form, Row, Col, Button } from 'react-bootstrap';
+import { Container, Table, Form, Row, Col, Button, Alert } from 'react-bootstrap';
 import { MONTHS, APP_INIT_YEAR } from '../../../utils/utils';
 import AddLogModal from './AddLogModal';
 import EditLogModal from './EditLogModal';
@@ -28,6 +28,7 @@ const WorkLogs = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedLog, setSelectedLog] = useState(null);
+  const today = new Date();
 
   useEffect(() => {
     getWorkLogs();
@@ -63,6 +64,11 @@ const WorkLogs = () => {
   const handleShowEditModal = (logData) => {
     setSelectedLog(logData);
     setShowEditModal(true);
+  }
+
+  const isCurrentMonth = () => {
+    console.log(today.getMonth() + 1 == selectedMonth && today.getFullYear() == selectedYear)
+    return today.getMonth() + 1 == selectedMonth && today.getFullYear() == selectedYear;
   }
 
   return (
@@ -102,6 +108,15 @@ const WorkLogs = () => {
               </Form.Group>
             </Col>
           </Row>
+          {!isCurrentMonth() && (
+            <Row>
+              <Col>
+                <Alert variant="danger">
+                  Work logs can only be added to the current month. Only administrators can add/modify logs from the past months!
+                </Alert>
+              </Col>
+            </Row>
+          )}
         </Form>
         <Table striped bordered hover>
           <thead>
