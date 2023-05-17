@@ -6,8 +6,9 @@ import './SideNav.scss';
 const SideNav = () => {
   const [showClientOptions, setShowClientOptions] = useState(false);
   const [showProjectOptions, setShowProjectOptions] = useState(false);
-  const [ListUsersOptions, setListUsersOptions] = useState(false);
+  const [showUserOptions, setShowUsersOptions] = useState(false);
   const [showSideNav, setShowSideNav] = useState(false);
+  const [showInvoiceOptions, setShowInvoiceOptions] = useState(false);
 
   return (
     <div className={`sidenav-wrapper ${showSideNav ? 'show' : ''}`} onMouseOver={() => setShowSideNav(true)} onMouseOut={() => setShowSideNav(false)}>
@@ -37,15 +38,24 @@ const SideNav = () => {
             <Link to="/dashboard/admin/projects/assign">Proiecte Utilizatori</Link>
           </div>
         </Collapse>
-        <button className="link-btn" onClick={() => setListUsersOptions(!ListUsersOptions)}>
+        <button className="link-btn" onClick={() => setShowUsersOptions(!showUserOptions)}>
           Angajati
         </button>
-        <Collapse in={ListUsersOptions}>
+        <Collapse in={showUserOptions}>
           <div className="collapse-nav">
             <Link to="/dashboard/admin/users/add">Adauga Angajat</Link>
             <Link to="/dashboard/admin/users/remove">Sterge Angajat</Link>
             <Link to="/dashboard/admin/users/update">Modifica Angajat</Link>
             <Link to="/dashboard/admin/users/show">Lista Angajati</Link>
+          </div>
+        </Collapse>
+        <button className="link-btn" onClick={() => setShowInvoiceOptions(!showInvoiceOptions)}>
+          Facturi
+        </button>
+        <Collapse in={showInvoiceOptions}>
+          <div className="collapse-nav">
+            <Link to="/dashboard/admin/invoices/create">Creare Factura</Link>
+            <Link to="/dashboard/admin/invoices/list">Lista facturi</Link>
           </div>
         </Collapse>
       </nav>

@@ -24,6 +24,9 @@ import { UserContext } from '../context';
 import ProjectDetails from '../pages/Admin/Projects/ProjectDetails';
 import ClientDetails from '../pages/Admin/Clients/ClientDetails';
 import UserDetails from '../pages/Admin/Users/UserDetails';
+import ListInvoices from '../pages/Admin/Invoices/ListInvoices';
+import CreateInvoice from '../pages/Admin/Invoices/CreateInvoice';
+import InvoiceDetail from '../pages/Admin/Invoices/InvoiceDetail';
 
 const UserLayout = (props) => {
   const { userData } = useContext(UserContext);
@@ -183,6 +186,33 @@ const UserLayout = (props) => {
             element={
               <ProtectedAdminRoute>
                 <ProjectDetails />
+              </ProtectedAdminRoute>
+            } 
+          />
+          <Route 
+            exact 
+            path={`/admin/invoices/list`} 
+            element={
+              <ProtectedAdminRoute>
+                <ListInvoices />
+              </ProtectedAdminRoute>
+            } 
+          />
+          <Route 
+            exact 
+            path={`/admin/invocies/create`} 
+            element={
+              <ProtectedAdminRoute>
+                <CreateInvoice />
+              </ProtectedAdminRoute>
+            } 
+          />
+          <Route 
+            exact 
+            path={`/admin/invocies/invoice/:invoiceId`} 
+            element={
+              <ProtectedAdminRoute>
+                <InvoiceDetail />
               </ProtectedAdminRoute>
             } 
           />
