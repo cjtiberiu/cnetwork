@@ -200,7 +200,7 @@ const UserLayout = (props) => {
           />
           <Route 
             exact 
-            path={`/admin/invocies/create`} 
+            path={`/admin/invoices/create`} 
             element={
               <ProtectedAdminRoute>
                 <CreateInvoice />
