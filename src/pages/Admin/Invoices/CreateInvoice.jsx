@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { MONTHS, APP_INIT_YEAR } from "../../../utils/utils";
-import { Col, Container, Row, Form, ListGroup } from "react-bootstrap";
+import { Col, Container, Row, Form, ListGroup, Button } from "react-bootstrap";
 
 const CreateInvoice = () => {
   const [clients, setClients] = useState([]);
@@ -23,15 +23,14 @@ const CreateInvoice = () => {
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [selectedClient, setSelectedClient] = useState(0);
   const [invoiceData, setInvoiceData] = useState([]);
+  const [invoiceClientData, setInvoiceClientData] = useState(null);
 
   useEffect(() => {
     getClients();
   }, []);
 
   useEffect(() => {
-    console.log('selectedClient', selectedClient)
     getClientInvoiceData();
-
   }, [selectedClient])
 
   const getClients = async () => {
@@ -47,7 +46,6 @@ const CreateInvoice = () => {
     const result = await response.json();
 
     if (result.data) {
-      console.log(result.data)
       setClients(result.data);
     }
   }
@@ -66,8 +64,96 @@ const CreateInvoice = () => {
 
     if (result.data) {
       setInvoiceData(result.data.projects);
+      setInvoiceClientData({ id: result.data.clientId, vatPercentage: result.data.vatPercentage })
     }
   }
+
+  const createInvoice = async () => {
+    const invoiceRequestData = {
+      vatPercentage: invoiceClientData.vatPercentage,
+      clientId: invoiceClientData.id
+    }
+
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: JSON.parse(localStorage.getItem('authToken')),
+      },
+      body: JSON.stringify(invoiceRequestData),
+    };
+
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/invoices/create`, requestOptions);
+    const result = await response.json();
+
+    for (const project of invoiceData) {
+      for (const user of project.users) {
+        if (user.checked) {
+          addInvoiceEntry(result.data, user, project);
+        }
+      }
+    }
+  }
+
+  const addInvoiceEntry = async (invoice, user, project) => {
+    const invoiceEntryData = {
+      totalHours: user.totalHours,
+      pricePerHour: user.pricePerHour,
+      userId: user.id,
+      projectId: project.id,
+      invoiceId: invoice.id
+    }
+
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: JSON.parse(localStorage.getItem('authToken')),
+      },
+      body: JSON.stringify(invoiceEntryData),
+    };
+
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/invoices/addentry`, requestOptions);
+    const result = await response.json();
+
+    console.log('ENTRY ADDED SUCCESFULLY');
+  }
+
+  const calculateProjectTotals = (project) => {
+    let projectTotalAmount = 0;
+    let projectTotalHours = 0;
+
+    if (!project) return { projectTotalAmount, projectTotalHours };
+
+    for (const user of project.users) {
+      if (user.checked) {
+        projectTotalAmount += user.totalAmount;
+        projectTotalHours += user.totalHours;
+      }
+    }
+    
+    return { projectTotalAmount, projectTotalHours };
+  }
+
+  const calculateInvoiceTotals = () => {
+    let invoiceTotalAmount = 0;
+    let invoiceTotalHours = 0;
+
+    if (!invoiceData) return { invoiceTotalAmount, invoiceTotalHours };
+
+    for (const project of invoiceData) {
+      for (const user of project.users) {
+        if (user.checked) {
+          invoiceTotalAmount += user.totalAmount;
+          invoiceTotalHours += user.totalHours;
+        }
+      }
+    }
+    
+    return { invoiceTotalAmount, invoiceTotalHours };       
+  }
+
+  const { invoiceTotalAmount, invoiceTotalHours } = calculateInvoiceTotals();
 
   return (
     <>
@@ -119,6 +205,7 @@ const CreateInvoice = () => {
         <CheckboxGroup invoiceData={invoiceData} setInvoiceData={setInvoiceData} />
         <ListGroup as="ol" numbered>
           {invoiceData.map((project, projectIndex) => {
+            const { projectTotalAmount, projectTotalHours } = calculateProjectTotals(project);
             return project.checked && (
               <React.Fragment key={`project-${projectIndex}`}>
                 <ListGroup.Item
@@ -126,9 +213,9 @@ const CreateInvoice = () => {
                   className="d-flex justify-content-between align-items-start"
                 >
                   <div className="ms-2 me-auto">
-                    <div className="fw-bold">{project.name}</div>
+                    <div className="fw-bold">{project.name} | Suma Totala: {projectTotalAmount} | Ore Lucrate: {projectTotalHours}</div>
                     {project.users.map((user, userIndex) => {
-                      return user.checked && <div key={`i-${projectIndex}${userIndex}`}>{user.name}</div>
+                      return user.checked && <div key={`i-${projectIndex}${userIndex}`}>{user.name} | Suma Totala: {user.totalAmount} | Ore Lucrate: {user.totalHours}</div>
                     })}
                   </div>
                 </ListGroup.Item>
@@ -136,6 +223,8 @@ const CreateInvoice = () => {
             )
           })}
         </ListGroup>
+        <p><strong>Total Suma: {invoiceTotalAmount}</strong> | <strong>Total Ore Lucrate: {invoiceTotalHours}</strong></p>
+        <Button onClick={createInvoice}>Create</Button>
       </Container>
     </>
   )
@@ -187,7 +276,6 @@ const CheckboxGroup = ({ invoiceData, setInvoiceData }) => {
     if (userIndex !== undefined) {
       tempInvoiceData[projectIndex].users[userIndex].checked = !tempInvoiceData[projectIndex].users[userIndex].checked;
       tempInvoiceData[projectIndex].users.some(user => {
-        console.log('user', user.checked)
         if (user.checked == true) {
           projectChecked = true;
         }
@@ -211,7 +299,7 @@ const CheckboxGroup = ({ invoiceData, setInvoiceData }) => {
         return (
           <NestedCheckbox
             key={`project-${projectIndex}`}
-            label={project.name}
+            label={project.name + ' (' + project.totalHours + ' ore)'}
             isChecked={invoiceData[projectIndex].checked ? invoiceData[projectIndex].checked : false}
             onChange={handleCheckboxChange(projectIndex)}
           >
@@ -219,7 +307,7 @@ const CheckboxGroup = ({ invoiceData, setInvoiceData }) => {
               return (
                 <Checkbox
                   key={`i-${projectIndex}${userIndex}`}
-                  label={user.name}
+                  label={user.name + ' (' + user.totalHours + ' ore)'}
                   isChecked={invoiceData[projectIndex].users[userIndex].checked ? invoiceData[projectIndex].users[userIndex].checked : false}
                   onChange={handleCheckboxChange(projectIndex, userIndex)}
                 />
