@@ -50,3 +50,4 @@ export const MONTHS = [
 ];
 
 export const APP_INIT_YEAR = 2023;
+export const VAT_PERCENTAGE = 19;

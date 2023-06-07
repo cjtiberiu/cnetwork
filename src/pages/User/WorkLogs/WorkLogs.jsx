@@ -112,7 +112,7 @@ const WorkLogs = () => {
             <Row>
               <Col>
                 <Alert variant="danger">
-                  Work logs can only be added to the current month. Only administrators can add/modify logs from the past months!
+                  Orele trebuie adaugate doar pe luna curenta!
                 </Alert>
               </Col>
             </Row>

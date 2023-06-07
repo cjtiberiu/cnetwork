@@ -1,5 +1,12 @@
 .header {
-  border-bottom: 1px solid $dark;
+  //border-bottom: 1px solid $info;
+  // background: $dark;
+  // color: $light;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  z-index: 2000;
+  position: relative;
+  transform: translateZ(0);
+  background: $white;
 
   >.container {
     align-items: center;
@@ -15,9 +22,10 @@
     padding: 1rem 0;
 
     .nav-item {
-      color: $black;
+      color: $dark;
       text-decoration: none;
       padding: 0;
+      font-size: 1.25rem;
     }
   }
 

@@ -45,8 +45,8 @@ const ListInvoices = () => {
                 <td>{invoice.id}</td>
                 <td>{invoice.client.name}</td>
                 <td>{invoice.vatPercentage}</td>
-                <td>{invoice.vatAmount}</td>
-                <td>{invoice.totalAmount}</td>
+                <td>{invoice.vatAmount} {invoice.client.country.currency}</td>
+                <td>{invoice.totalAmount} {invoice.client.country.currency}</td>
               </tr>
             );
           })}

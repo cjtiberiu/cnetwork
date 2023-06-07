@@ -122,8 +122,10 @@ const AddLogModal = (props) => {
                 customInput={<Form.Control />}
               />
             </Form.Group>
-            <Button type="submit" onClick={handleSubmit}>Add</Button>
-            <Button type="submit" variant="danger" onClick={handleDelete}>Delete</Button>
+            <div className="d-flex justify-content-between g-1">
+              <Button type="submit" className="w-100 me-1" onClick={handleSubmit}>Add</Button>
+              <Button type="submit" variant="danger" className="w-100 ms-1" onClick={handleDelete}>Delete</Button>
+            </div>
           </Form>
         </Col>
       </Row>

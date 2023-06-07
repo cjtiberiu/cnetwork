@@ -5,6 +5,9 @@
   background: white;
   transform: translateX(-99%);
   transition: transform .3s;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  z-index: 1000;
+  padding-top: 50px;
 
   &.show,
   &:focus,
@@ -19,5 +22,25 @@
     transform: translateX(100%);
   }
 
+  h3 {
+    font-size: 1.2rem;
+  }
 
+  .link-btn {
+    font-size: 1.2rem;
+  }
+  
+  .sidenav-dropdown-btn {
+    display: flex;
+    align-items: center;
+    svg {
+      margin-left: 0.4rem;
+      transition: transform 0.3s;
+    }
+    &.show {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
 }

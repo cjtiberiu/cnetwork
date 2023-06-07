@@ -11,12 +11,14 @@ const SideNav = () => {
   const [showInvoiceOptions, setShowInvoiceOptions] = useState(false);
 
   return (
-    <div className={`sidenav-wrapper ${showSideNav ? 'show' : ''}`} onMouseOver={() => setShowSideNav(true)} onMouseOut={() => setShowSideNav(false)}>
-      <h3>Panou Administrare</h3>
+    <div className={`sidenav-wrapper show ${showSideNav ? 'show' : ''}`} onMouseOver={() => setShowSideNav(true)} onMouseOut={() => setShowSideNav(false)}>
+      <h3>Administrare</h3>
       <nav className="sidenav">
-        <Link to="/dashboard">Home</Link>
-        <button className="link-btn" onClick={() => setShowClientOptions(!showClientOptions)}>
+        <button className={`link-btn sidenav-dropdown-btn ${showClientOptions ? 'show' : ''}`} onClick={() => setShowClientOptions(!showClientOptions)}>
           Clienti
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+          </svg>
         </button>
         <Collapse in={showClientOptions}>
           <div className="collapse-nav">
@@ -26,8 +28,11 @@ const SideNav = () => {
             <Link to="/dashboard/admin/clients/show">Lista Clienti</Link>
           </div>
         </Collapse>
-        <button className="link-btn" onClick={() => setShowProjectOptions(!showProjectOptions)}>
+        <button className={`link-btn sidenav-dropdown-btn ${showProjectOptions ? 'show' : ''}`} onClick={() => setShowProjectOptions(!showProjectOptions)}>
           Proiecte
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+          </svg>
         </button>
         <Collapse in={showProjectOptions}>
           <div className="collapse-nav">
@@ -38,8 +43,11 @@ const SideNav = () => {
             <Link to="/dashboard/admin/projects/assign">Proiecte Utilizatori</Link>
           </div>
         </Collapse>
-        <button className="link-btn" onClick={() => setShowUsersOptions(!showUserOptions)}>
+        <button className={`link-btn sidenav-dropdown-btn ${showUserOptions ? 'show' : ''}`} onClick={() => setShowUsersOptions(!showUserOptions)}>
           Angajati
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+          </svg>
         </button>
         <Collapse in={showUserOptions}>
           <div className="collapse-nav">
@@ -49,8 +57,11 @@ const SideNav = () => {
             <Link to="/dashboard/admin/users/show">Lista Angajati</Link>
           </div>
         </Collapse>
-        <button className="link-btn" onClick={() => setShowInvoiceOptions(!showInvoiceOptions)}>
+        <button className={`link-btn sidenav-dropdown-btn ${showInvoiceOptions ? 'show' : ''}`} onClick={() => setShowInvoiceOptions(!showInvoiceOptions)}>
           Facturi
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+          </svg>
         </button>
         <Collapse in={showInvoiceOptions}>
           <div className="collapse-nav">

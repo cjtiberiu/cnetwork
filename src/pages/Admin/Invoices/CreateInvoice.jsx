@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { MONTHS, APP_INIT_YEAR } from "../../../utils/utils";
+import { MONTHS, APP_INIT_YEAR, VAT_PERCENTAGE } from "../../../utils/utils";
 import { Col, Container, Row, Form, ListGroup, Button } from "react-bootstrap";
 
 const CreateInvoice = () => {
@@ -31,7 +31,7 @@ const CreateInvoice = () => {
 
   useEffect(() => {
     getClientInvoiceData();
-  }, [selectedClient])
+  }, [selectedClient, selectedMonth, selectedYear])
 
   const getClients = async () => {
     const requestOptions = {
@@ -64,13 +64,13 @@ const CreateInvoice = () => {
 
     if (result.data) {
       setInvoiceData(result.data.projects);
-      setInvoiceClientData({ id: result.data.clientId, vatPercentage: result.data.vatPercentage })
+      setInvoiceClientData({ id: result.data.clientId })
     }
   }
 
   const createInvoice = async () => {
     const invoiceRequestData = {
-      vatPercentage: invoiceClientData.vatPercentage,
+      vatPercentage: VAT_PERCENTAGE,
       clientId: invoiceClientData.id
     }
 
@@ -115,8 +115,6 @@ const CreateInvoice = () => {
 
     const response = await fetch(`${process.env.REACT_APP_API_URL}/invoices/addentry`, requestOptions);
     const result = await response.json();
-
-    console.log('ENTRY ADDED SUCCESFULLY');
   }
 
   const calculateProjectTotals = (project) => {

@@ -1,23 +1,42 @@
 $black: #000 !default;
 
-// $theme-colors: (
-//   "primary":    $primary,
-//   "secondary":  $secondary,
-//   "success":    $success,
-//   "info":       $info,
-//   "warning":    $warning,
-//   "danger":     $danger,
-//   "light":      $light,
-//   "dark":       $dark
-// ) !default;
+$theme-colors: (
+  "primary":    #025464,
+  "secondary":  #526D82,
+  "success":    #539165,
+  "info":       #526D82,
+  "warning":    #DC8449,
+  "danger":     #DF2E38,
+  "light":      #BAD7E9,
+  "dark":       #2D2727
+) !default;
 
 $link-decoration: none !default;
 $link-color: $black !default;
+
+$font-family-base: 'Poppins', sans-serif !default;
+$font-family-sans-serif: 'Poppins', sans-serif !default;
+
+$btn-font-weight: 600 !default;
+$zindex-modal: 3000 !default;
+$zindex-modal-backdrop: 3000 !default;
 
 @import '../node_modules/bootstrap/scss/bootstrap';
 
 @import "./components/Header/Header.scss";
 @import "./pages/Login/Login.scss";
+
+.modal-dialog {
+    top: 100px;
+}
+
+html {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #eee;
+}
 
 .link-btn {
     border: none;
@@ -34,29 +53,11 @@ $link-color: $black !default;
     }
 }
 
-// .admin-layout {
-//     display: flex;
-
-//     .sidenav-wrapper {
-//         flex-basis: 20%;
-//         max-width: 20%;
-//     }
-
-//     .page-content {
-//         flex-grow: 1;
-//         padding: 2rem;
-//     }
-// }
-
-.sidenav-wrapper {
-    border-right: 1px solid $dark;
-}
-
 .sidenav {
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 1.2rem;
+    gap: 1rem;
     font-size: 1.5rem;
     color: $black;
     align-items: flex-start;

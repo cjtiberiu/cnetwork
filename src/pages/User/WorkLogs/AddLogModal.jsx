@@ -92,7 +92,7 @@ const AddLogModal = (props) => {
                 customInput={<Form.Control />}
               />
             </Form.Group>
-            <Button type="submit" onClick={handleSubmit}>Add</Button>
+            <Button type="submit" className="w-100" onClick={handleSubmit}>Add</Button>
           </Form>
         </Col>
       </Row>
