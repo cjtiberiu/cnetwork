@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Container, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const ListUsers = (props) => {
   const [clients, setClients] = useState([]);
@@ -41,7 +42,9 @@ const ListUsers = (props) => {
           {clients.map((client) => {
             return (
               <tr key={client.id}>
-                <td>{client.name}</td>
+                <td>
+                  <Link to={`/dashboard/admin/clients/client/${client.id}`}>{client.name}</Link>
+                </td>
                 <td>{client.country.name}</td>
                 <td>{client.country.currency}</td>
                 <td>-</td>

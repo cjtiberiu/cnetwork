@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Container, Table } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 
 const ListInvoices = () => {
   const [invoices, setInvoices] = useState([]);
@@ -36,6 +37,7 @@ const ListInvoices = () => {
             <th>TVA</th>
             <th>Valoare TVA</th>
             <th>Suma Totala</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -47,6 +49,9 @@ const ListInvoices = () => {
                 <td>{invoice.vatPercentage}</td>
                 <td>{invoice.vatAmount} {invoice.client.country.currency}</td>
                 <td>{invoice.totalAmount} {invoice.client.country.currency}</td>
+                <td className="d-flex justify-content-center">
+                  <Link to={`/dashboard/admin/invoices/invoice/${invoice.id}`}>Detalii</Link>
+                </td>
               </tr>
             );
           })}

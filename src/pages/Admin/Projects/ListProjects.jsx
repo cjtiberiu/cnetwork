@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Container, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const ListProjects = () => {
   const [projects, setProjects] = useState([]);
@@ -40,7 +41,9 @@ const ListProjects = () => {
           {projects.map((project) => {
             return (
               <tr key={project.id}>
-                <td>{project.name}</td>
+                <td>
+                  <Link to={`/dashboard/admin/projects/project/${project.id}`}>{project.name}</Link>
+                </td>
                 <td>{project.client.name}</td>
                 <td>{project.project_type.type}</td>
               </tr>

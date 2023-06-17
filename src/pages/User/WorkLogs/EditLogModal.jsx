@@ -91,7 +91,7 @@ const AddLogModal = (props) => {
   }
 
   return (
-    <AppModal show={showModal} handleClose={handleClose} title="Test Modal">
+    <AppModal show={showModal} handleClose={handleClose} title="Editeaza Ore">
       <Row>
         <Col>
           <Form className="p-3" onSubmit={handleSubmit}>
