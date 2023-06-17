@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 import decodeToken from 'jwt-decode';
 import { UserContext } from './context';
 import LoginLayout from './layouts/LoginLayout';
 import UserLayout from './layouts/DashboardLayout';
-import AdminLayout from './layouts/AdminLayout';
 import ProtectedUserRoute from './routes/ProtectedUserRoute/ProtectedUserRoute';
 import ProtectedAuthRoute from './routes/ProtectedAuthRoute/ProtectedAuthRoute';
-import ProtectedAdminRoute from './routes/ProtectedAdminRoute/ProtectedAdminRoute';
 import "./custom-bootstrap.scss";
 
 function App() {
@@ -29,7 +27,7 @@ function App() {
   });
 
   useEffect(() => {
-    console.log('LOGGED USER DATA', userData);
+    console.log('userData', userData)
   }, [userData]);
 
   const dispatchUserEvent = (actionType, payload) => {
@@ -66,14 +64,17 @@ function App() {
               </ProtectedUserRoute>
             }
           />
-          {/* <Route
-            path="/admin/*"
+          <Route
+            exact
+            path="/"
             element={
-              <ProtectedAdminRoute>
-                <AdminLayout />
-              </ProtectedAdminRoute>
+              userData ? (
+                <Navigate to="/dashboard" replace={true} />
+              ) : (
+                <Navigate to="/login" replace={true} />
+              )
             }
-          /> */}
+          />
         </Routes>
       </BrowserRouter>
     </UserContext.Provider>
