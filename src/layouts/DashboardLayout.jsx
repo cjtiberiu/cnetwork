@@ -26,7 +26,7 @@ import ClientDetails from '../pages/Admin/Clients/ClientDetails';
 import UserDetails from '../pages/Admin/Users/UserDetails';
 import ListInvoices from '../pages/Admin/Invoices/ListInvoices';
 import CreateInvoice from '../pages/Admin/Invoices/CreateInvoice';
-import InvoiceDetail from '../pages/Admin/Invoices/InvoiceDetail';
+import InvoiceDetails from '../pages/Admin/Invoices/InvoiceDetails';
 
 const UserLayout = (props) => {
   const { userData } = useContext(UserContext);
@@ -212,7 +212,7 @@ const UserLayout = (props) => {
             path={`/admin/invocies/invoice/:invoiceId`} 
             element={
               <ProtectedAdminRoute>
-                <InvoiceDetail />
+                <InvoiceDetails />
               </ProtectedAdminRoute>
             } 
           />

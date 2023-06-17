@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { UserContext } from '../../context';
 import { Link, useNavigate } from 'react-router-dom';
 import { Container, Button } from 'react-bootstrap';
+import { ReactComponent as Logo } from '../../assets/logo.svg';
 //import './Header.scss';
 
 const Header = (props) => {
@@ -18,7 +19,7 @@ const Header = (props) => {
     <header className="header">
       <Container>
         <div className="logo-wrapper">
-          <h3>LOGO</h3>
+          <Logo />
         </div>
         <nav className="nav">
           <Link to="/dashboard/user/clients" className="nav-item">

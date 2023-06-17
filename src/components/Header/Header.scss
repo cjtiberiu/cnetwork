@@ -4,9 +4,13 @@
   // color: $light;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
   z-index: 2000;
-  position: relative;
+  position: fixed;
   transform: translateZ(0);
   background: $white;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
 
   >.container {
     align-items: center;
@@ -31,6 +35,7 @@
 
   .logo-wrapper {
     margin-right: 1.5rem;
+    width: 80px;
 
     > * {
       margin-bottom: 0;

@@ -1,13 +1,13 @@
 .sidenav-wrapper {
-  position: absolute;
+  position: fixed;
   padding: 1rem;
-  max-width: 25rem;
+  min-width: 16rem;
   background: white;
   transform: translateX(-99%);
   transition: transform .3s;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
   z-index: 1000;
-  padding-top: 50px;
+  padding-top: 6rem;
 
   &.show,
   &:focus,

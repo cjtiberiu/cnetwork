@@ -38,6 +38,10 @@ body {
     background: #eee;
 }
 
+main {
+    padding-top: 70px;
+}
+
 .link-btn {
     border: none;
     background: none;
@@ -113,5 +117,11 @@ body {
 }
 
 .main {
-    padding-top: 1.5rem;
+    padding-top: 6rem;
+    max-height: 100vh;
+    overflow: auto;
+}
+
+.card {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }

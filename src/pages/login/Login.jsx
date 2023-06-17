@@ -44,7 +44,7 @@ const Login = (props) => {
   return (
     <Container className="login-page">
       <Row>
-        <Col lg={{ offset: 4, span: 4 }} className="login-form__wrapper p-3">
+        <Col lg={{ offset: 4, span: 4 }} className="login-form__wrapper p-4">
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="loginEmail">
               <Form.Label>Email</Form.Label>
@@ -54,7 +54,7 @@ const Login = (props) => {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Enter password" onChange={(e) => setPassword(e.target.value)}></Form.Control>
             </Form.Group>
-            <Button type="submit" className="w-100">
+            <Button type="submit" className="w-100 mt-3">
               Sign In
             </Button>
           </Form>

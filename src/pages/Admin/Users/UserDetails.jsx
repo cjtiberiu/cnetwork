@@ -60,7 +60,8 @@ const UserDetails = (props) => {
             </tbody>
           </Table>
         </Col>
-        <Col>
+        <Col lg={{ span: 4, offset: 2 }}>
+        <div className="card p-4">
           <h3>Detalii Proiect</h3>
           <ul className="list-unstyled">
             <li>Nume Utilizator: {userDetails.firstName} {userDetails.lastName}</li>
@@ -70,6 +71,7 @@ const UserDetails = (props) => {
             <li>Data Inceput Contract: {userDetails.contractStartDate}</li>
             <li>Data Incetare Contract: {userDetails.contractEndDate}</li>
           </ul>
+        </div>
         </Col>
       </Row>
     </Container>
