@@ -101,11 +101,14 @@ const InvoiceDetails = () => {
                   </tbody>
                 </Table>
                 <Row className="mt-3">
-                  <Col lg={{ span: 4, offset: 8 }}>
+                  <Col>
+
+                  </Col>
+                  <Col xs="auto">
                     <ul className="list-unstyled text-end">
-                      <li><strong>Procent TVA: </strong>{invoiceData.vatPercentage}%</li>
-                      <li><strong>Suma TVA: </strong>{invoiceData.vatAmount} {invoiceData.client.country.currency}</li>
-                      <li className="fs-24"><strong>Total: {invoiceData.totalAmount} {invoiceData.client.country.currency}</strong></li>
+                      <li className="border-top border-bottom py-1 ps-3"><strong>Procent TVA: </strong>{invoiceData.vatPercentage}%</li>
+                      <li className="border-bottom py-1 ps-3"><strong>Suma TVA: </strong>{invoiceData.vatAmount} {invoiceData.client.country.currency}</li>
+                      <li className="fs-24 border-bottom py-1 ps-3"><strong>Total: {invoiceData.totalAmount} {invoiceData.client.country.currency}</strong></li>
                     </ul>
                   </Col>
                 </Row>
