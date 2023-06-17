@@ -27,6 +27,8 @@ import UserDetails from '../pages/Admin/Users/UserDetails';
 import ListInvoices from '../pages/Admin/Invoices/ListInvoices';
 import CreateInvoice from '../pages/Admin/Invoices/CreateInvoice';
 import InvoiceDetails from '../pages/Admin/Invoices/InvoiceDetails';
+import Projects from '../pages/User/Projects/Projects';
+import TeamMembers from '../pages/User/TeamMembers/TeamMembers';
 
 const UserLayout = (props) => {
   const { userData } = useContext(UserContext);
@@ -43,8 +45,26 @@ const UserLayout = (props) => {
       <main className="main">
         <Routes>
           <Route exact path={`/user`} element={<HomePage />} />
-          <Route exact path={`/user/clients`} element={<ClientsPage />} />
+          <Route exact path={`/user/projects`} element={<Projects />} />
           <Route exact path={`/user/logs`} element={<WorkLogs />} />
+          <Route 
+            exact 
+            path={`/projects/project/:projectId`} 
+            element={
+              <ProtectedUserRoute>
+                <ProjectDetails />
+              </ProtectedUserRoute>
+            } 
+          />
+          <Route 
+            exact 
+            path={`/team/members`} 
+            element={
+              <ProtectedUserRoute>
+                <TeamMembers />
+              </ProtectedUserRoute>
+            } 
+          />
           <Route 
             exact 
             path={`/admin/clients/add`} 

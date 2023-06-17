@@ -6,7 +6,7 @@ import { ReactComponent as Logo } from '../../assets/logo.svg';
 //import './Header.scss';
 
 const Header = (props) => {
-  const { dispatchUserEvent } = useContext(UserContext)
+  const { userData, dispatchUserEvent } = useContext(UserContext)
   const navigate = useNavigate();
 
   const signOut = () => {
@@ -22,20 +22,23 @@ const Header = (props) => {
           <Logo />
         </div>
         <nav className="nav">
-          <Link to="/dashboard/user/clients" className="nav-item">
-            Clienti
-          </Link>
           <Link to="/dashboard/user/projects" className="nav-item">
-            Proiecte
+            Proiectele Mele
           </Link>
           <Link to="/dashboard/user/logs" className="nav-item">
             Ore Lucrate
           </Link>
-          <Link to="/dashboard/user/users" className="nav-item">
+          <Link to="/dashboard/team/members" className="nav-item">
             Echipa
           </Link>
         </nav>
-        <nav className="utility-nav">
+        <nav className="utility-nav d-flex align-items-center">
+          <div className="d-flex align-items-center me-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#025464" className="me-1" viewBox="0 0 16 16">
+              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+            </svg>
+            <span>{userData.email}</span>
+          </div>
           <Button onClick={signOut}>
             Delogare
           </Button>
