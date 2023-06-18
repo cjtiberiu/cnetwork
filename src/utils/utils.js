@@ -61,6 +61,7 @@ export const COMPANY_DATA = {
 }
 
 export const filterArray = (array, filters) =>  {
+  console.log('filters', filters)
   return array.filter(item => {
     return Object.entries(filters).every(([key, value]) => {
       if (Array.isArray(item[key])) {
@@ -74,3 +75,20 @@ export const filterArray = (array, filters) =>  {
     });
   });
 }
+
+// export const filterArray = (array, filters, searchKeys) => {
+//   const { searchValue } = filters;
+  
+//   return array.filter(item => {
+//     return searchKeys.some(key => {
+//       if (item[key] && typeof item[key] === 'string') {
+//         if (key === 'name' || key === 'email') {
+//           return item[key].toLowerCase().includes(searchValue.toLowerCase());
+//         } else {
+//           return item[key].toLowerCase() === searchValue.toLowerCase();
+//         }
+//       }
+//       return false;
+//     });
+//   });
+// };

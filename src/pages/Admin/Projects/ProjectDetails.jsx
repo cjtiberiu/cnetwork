@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Container, Row, Col, Table } from 'react-bootstrap';
+import { Container, Row, Col, Table, Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 
 const ProjectDetails = (props) => {
@@ -55,6 +55,7 @@ const ProjectDetails = (props) => {
               })}
             </tbody>
           </Table>
+          <Button>Adauga Utilizator</Button>
         </Col>
         <Col lg={{ span: 4, offset: 1 }}>
           <div className="card p-3">
