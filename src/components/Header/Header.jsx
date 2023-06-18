@@ -18,9 +18,11 @@ const Header = (props) => {
   return (
     <header className="header">
       <Container>
-        <div className="logo-wrapper">
-          <Logo />
-        </div>
+        <Link to ="/dashboard">
+          <div className="logo-wrapper">
+            <Logo />
+          </div>
+        </Link>
         <nav className="nav">
           <Link to="/dashboard/user/projects" className="nav-item">
             Proiectele Mele

@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Col, Container, Row, Spinner, Form } from 'react-bootstrap';
-import { ReactComponent as Logo } from '../../../assets/logo.svg';
-import { Link } from 'react-router-dom';
 import { filterArray } from '../../../utils/utils';
 
 const TeamMembers = () => {
