@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Spinner } from 'react-bootstrap';
 import { ReactComponent as Logo } from '../../../assets/logo.svg';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../../context';
@@ -7,12 +7,15 @@ import { UserContext } from '../../../context';
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const { userData } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
   
   useEffect(() => {
     getProjects();
   }, []);
 
   const getProjects = async () => {
+    setLoading(true);
+
     const requestOptions = {
       method: 'GET',
       headers: {
@@ -27,21 +30,31 @@ const Projects = () => {
     if (result.data) {
       setProjects(result.data.projects);
     }
+
+    setLoading(false);
   };
 
   return (
     <Container>
       <Row>
-        {projects.map((project) => {
-          return (
-          <Col className="p-2" xs={12} lg={3} key={project.id}>
-            <Link to={`/dashboard/projects/project/${project.id}`} className="card p-3 d-flex flex-column align-items-center justify-content-center">
-              <Logo style={{ width: 50, height: 50 }} />
-              <span className="mt-2">{project.name}</span>
-            </Link>
-          </Col>
-          )
-        })}
+        {loading ? (
+          <div className="spinner-wrapper">
+            <Spinner animation="border" role="status" variant="primary">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </div>
+        ) : (
+          projects.map((project) => {
+            return (
+            <Col className="p-2" xs={12} lg={3} key={project.id}>
+              <Link to={`/dashboard/projects/project/${project.id}`} className="card p-3 d-flex flex-column align-items-center justify-content-center">
+                <Logo style={{ width: 50, height: 50 }} />
+                <span className="mt-2">{project.name}</span>
+              </Link>
+            </Col>
+            )
+          })
+        )}
       </Row>
     </Container>
   );

@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Spinner } from 'react-bootstrap';
 import { ReactComponent as Logo } from '../../../assets/logo.svg';
 import { Link } from 'react-router-dom';
 
 const TeamMembers = () => {
   const [members, setMembers] = useState([]);
+  const [loading, setLoading] = useState(false);
   
   useEffect(() => {
     getTeamMembers();
   }, []);
 
   const getTeamMembers = async () => {
+    setLoading(true);
+
     const requestOptions = {
       method: 'GET',
       headers: {
@@ -25,24 +28,34 @@ const TeamMembers = () => {
     if (result.users) {
       setMembers(result.users);
     }
+
+    setLoading(false);
   };
 
   return (
     <Container>
       <Row>
-        {members.map((member) => {
-          return (
-          <Col className="p-2" xs={12} lg={3} key={member.id}>
-            <div className="card p-3 d-flex flex-column align-items-center justify-content-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#025464" className="fs-30" viewBox="0 0 16 16">
-                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
-              </svg>
-              <span className="mt-2"><strong>{member.firstName} {member.lastName}</strong></span>
-              <span className="mt-1">{member.userRole}</span>
-            </div>
-          </Col>
-          )
-        })}
+        {loading ? (
+          <div className="spinner-wrapper">
+            <Spinner animation="border" role="status" variant="primary">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+          </div>
+        ) : (
+          members.map((member) => {
+            return (
+            <Col className="p-2" xs={12} lg={3} key={member.id}>
+              <div className="card p-3 d-flex flex-column align-items-center justify-content-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#025464" className="fs-30" viewBox="0 0 16 16">
+                  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                </svg>
+                <span className="mt-2"><strong>{member.firstName} {member.lastName}</strong></span>
+                <span className="mt-1">{member.userRole}</span>
+              </div>
+            </Col>
+            )
+          })
+        )}
       </Row>
     </Container>
   );
