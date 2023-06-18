@@ -56,14 +56,16 @@ const ProjectDetails = (props) => {
             </tbody>
           </Table>
         </Col>
-        <Col>
-          <h3>Detalii Proiect</h3>
-          <ul className="list-unstyled">
-            <li>Client: {projectDetails.client.name}</li>
-            <li>Tara: {projectDetails.client.country.name}</li>
-            <li>Moneda: {projectDetails.client.country.currency}</li>
-            <li>Tip Proiect: {projectDetails.project_type.type}</li>
-          </ul>
+        <Col lg={{ span: 4, offset: 1 }}>
+          <div className="card p-3">
+            <h3>Detalii Proiect</h3>
+            <ul className="list-unstyled">
+              <li>Client: {projectDetails.client.name}</li>
+              <li>Tara: {projectDetails.client.country.name}</li>
+              <li>Moneda: {projectDetails.client.country.currency}</li>
+              <li>Tip Proiect: {projectDetails.project_type.type}</li>
+            </ul>
+          </div>
         </Col>
       </Row>
     </Container>
