@@ -35,7 +35,8 @@ const ListUsers = (props) => {
             <th>Nume</th>
             <th>Tara</th>
             <th>Moneda</th>
-            <th>Numarul Proiectelor</th>
+            <th className="text-center">Numarul Proiectelor</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -47,7 +48,10 @@ const ListUsers = (props) => {
                 </td>
                 <td>{client.country.name}</td>
                 <td>{client.country.currency}</td>
-                <td>-</td>
+                <td className="text-center">{client.projects.length}</td>
+                <td className="text-center">
+                  <Link to={`/dashboard/admin/clients/client/${client.id}`} className="text-primary">Detalii</Link>
+                </td>
               </tr>
             );
           })}
