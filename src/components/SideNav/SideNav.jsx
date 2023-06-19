@@ -36,9 +36,9 @@ const SideNav = () => {
         </button>
         <Collapse in={showProjectOptions}>
           <div className="collapse-nav">
-            <Link to="/dashboard/admin/projects/add">Adauga Project</Link>
-            <Link to="/dashboard/admin/projects/remove">Sterge Project</Link>
-            <Link to="/dashboard/admin/projects/update">Modifica Project</Link>
+            <Link to="/dashboard/admin/projects/add">Adauga Proiect</Link>
+            <Link to="/dashboard/admin/projects/remove">Sterge Proiect</Link>
+            <Link to="/dashboard/admin/projects/update">Modifica Proiect</Link>
             <Link to="/dashboard/admin/projects/list">Lista Proiecte</Link>
             <Link to="/dashboard/admin/projects/assign">Proiecte Utilizatori</Link>
           </div>

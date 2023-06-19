@@ -69,9 +69,6 @@ const AddUser = (props) => {
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, requestOptions);
       const result = await response.json();
-
-      console.log('response', response);
-      console.log('result', result)
   
       if (response.status === 200) {
         setServerErrors([]);
@@ -80,7 +77,6 @@ const AddUser = (props) => {
           setSuccessMessage(result.message);
         }
       } else if (response.status === 400 && result.errors) {
-        console.log('here')
         setServerErrors(result.errors)
       }
     } catch(err) {

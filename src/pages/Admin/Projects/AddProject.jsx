@@ -1,30 +1,48 @@
 import { useState, useEffect } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
+const ProjectSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(3, 'Trebuie sa existe cel putin 3 caractere!')
+    .max(100, 'Numarul maxim de caractere a fost atins (100)')
+    .required('Aces camp este necesar!'),
+  clientId: Yup.number()
+    .required('Trebuie selectat clientul')
+    .moreThan(0, 'Proiectul trebuie alocat unui client'),
+  projectType: Yup.number()
+    .required('Trebuie selectat tipul proiectului')
+    .moreThan(0, 'Trebuie selectat tipul proiectului')
+});
 
 const AddProject = (props) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    clientId: 0,
-    projectType: 1
-  })
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      clientId: 0,
+      projectType: 0,
+    },
+    validationSchema: ProjectSchema,
+    validateOnChange: false,
+    validateOnBlur: true,
+    onSubmit: (values) => {
+      handleSubmit(values);
+    },
+  });
   const [clients, setClients] = useState([]);
   const [projectTypes, setProjectTypes] = useState([]);
-  const [displayMessage, setDisplayMessage] = useState('');
-
+  const [successMessage, setSuccessMessage] = useState('');
+  const [serverErrors, setServerErrors] = useState([]);
 
   useEffect(() => {
     getClients();
     getProjectTypes();
   }, []);
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    setDisplayMessage('');
+  const handleSubmit = async (values) => {
+    setSuccessMessage('');
+    setServerErrors([]);
 
     const requestOptions = {
       method: 'POST',
@@ -32,14 +50,24 @@ const AddProject = (props) => {
         'Content-Type': 'application/json',
         authorization: JSON.parse(localStorage.getItem('authToken')),
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(values),
     };
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/addproject`, requestOptions);
-    const result = await response.json();
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/addproject`, requestOptions);
+      const result = await response.json();
 
-    if (result.message) {
-      setDisplayMessage(result.message);
+      if (response.status === 200) {
+        setServerErrors([]);
+        formik.resetForm();
+        if (result.message) {
+          setSuccessMessage(result.message);
+        }
+      } else if (response.status === 400 && result.errors) {
+        setServerErrors(result.errors)
+      }
+    } catch(err) {
+      console.log(err)
     }
   };
 
@@ -80,28 +108,22 @@ const AddProject = (props) => {
     }
   }
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-
-    setFormData({
-      ...formData,
-      [name]: value
-    })
-  }
-
   return (
     <Container>
       <h1>Adauga Proiect</h1>
       <Row>
         <Col lg={{ span: 4 }}>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={formik.handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label htmlFor="name">Titlu</Form.Label>
-              <Form.Control type="text" name="name" value={formData.name} onChange={handleInputChange}></Form.Control>
+              <Form.Control type="text" name="name" value={formik.values.name} isInvalid={formik.touched.name && formik.errors.name} onChange={formik.handleChange}></Form.Control>
+              {formik.touched.name && formik.errors.name && (
+                <Form.Control.Feedback type="invalid">{formik.errors.name}</Form.Control.Feedback>
+              )}
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label htmlFor="clientId">Client</Form.Label>
-              <Form.Select aria-label="Client" id="clientId" name="clientId" value={formData.clientId} onChange={handleInputChange}>
+              <Form.Select aria-label="Client" id="clientId" name="clientId" isInvalid={formik.touched.clientId && formik.errors.clientId} value={formik.values.clientId} onChange={formik.handleChange}>
                 <option value="0">Alege un Client</option>
                 {clients.map((client) => {
                   return (
@@ -111,10 +133,14 @@ const AddProject = (props) => {
                   );
                 })}
               </Form.Select>
+              {formik.touched.clientId && formik.errors.clientId && (
+                <Form.Control.Feedback type="invalid">{formik.errors.clientId}</Form.Control.Feedback>
+              )}
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label htmlFor="projectType">Tipul Proiectului</Form.Label>
-              <Form.Select aria-label="Project Type" id="projectType" name="projectType" value={formData.projectType} onChange={handleInputChange}>
+              <Form.Select aria-label="Project Type" id="projectType" name="projectType" isInvalid={formik.touched.projectType && formik.errors.projectType} value={formik.values.projectType} onChange={formik.handleChange}>
+                <option value="0">Alege Tipul Proiectului</option>
                 {projectTypes.map((type) => {
                   return (
                     <option value={type.id} key={type.id}>
@@ -123,12 +149,28 @@ const AddProject = (props) => {
                   );
                 })}
               </Form.Select>
+              {formik.touched.projectType && formik.errors.projectType && (
+                <Form.Control.Feedback type="invalid">{formik.errors.projectType}</Form.Control.Feedback>
+              )}
             </Form.Group>
             <Button type="submit" className="w-100 mt-3">
               Adauga
             </Button>
           </Form>
-          <p>{displayMessage}</p>
+          {successMessage && (
+            <Alert variant="success" className="mt-3">
+              {successMessage}
+            </Alert>
+          )}
+          {serverErrors.length > 0 && (
+            <Alert variant="danger" className="mt-3">
+              <ul className="list-unstyled mb-0">
+                {serverErrors.map(error => {
+                    return <li key={error.message}>* {error.message}</li>
+                })}
+              </ul>
+            </Alert>
+          )}
         </Col>
       </Row>
     </Container>
