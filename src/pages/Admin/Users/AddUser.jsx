@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Formik, useFormik } from 'formik';
 import * as Yup from 'yup';
+import apiService from '../../../utils/apiService';
 
 const UserSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -67,20 +68,16 @@ const AddUser = (props) => {
     };
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, requestOptions);
-      const result = await response.json();
-  
-      if (response.status === 200) {
-        setServerErrors([]);
-        formik.resetForm();
-        if (result.message) {
-          setSuccessMessage(result.message);
-        }
-      } else if (response.status === 400 && result.errors) {
-        setServerErrors(result.errors)
+      const response = await apiService('/register', requestOptions);
+      setServerErrors([]);
+      formik.resetForm();
+
+      if (response.message) {
+        setSuccessMessage(response.message);
       }
     } catch(err) {
       console.log(err)
+      setServerErrors(err)
     }
 
   };
