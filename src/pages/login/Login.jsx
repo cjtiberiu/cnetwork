@@ -32,9 +32,9 @@ const Login = (props) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, requestOptions);
     const result = await response.json();
 
-    if (result.userData) {
-      localStorage.setItem('authToken', JSON.stringify(result.userData.token));
-      dispatchUserEvent('SET_USER', decodeToken(result.userData.token));
+    if (result.data) {
+      localStorage.setItem('authToken', JSON.stringify(result.data.token));
+      dispatchUserEvent('SET_USER', decodeToken(result.data.token));
       navigate('/dashboard', { replace: true });
     }
 

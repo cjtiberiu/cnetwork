@@ -59,8 +59,8 @@ const ListUsers = (props) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/getusertypes`, requestOptions);
     const result = await response.json();
 
-    if (result.userTypes) {
-      setUserTypes(result.userTypes);
+    if (result.data) {
+      setUserTypes(result.data);
     }
   };
 
@@ -76,8 +76,8 @@ const ListUsers = (props) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/getuserroles`, requestOptions);
     const result = await response.json();
 
-    if (result.userRoles) {
-      setUserRoles(result.userRoles);
+    if (result.data) {
+      setUserRoles(result.data);
     }
   };
 

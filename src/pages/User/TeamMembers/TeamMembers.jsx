@@ -36,8 +36,8 @@ const TeamMembers = () => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/getusers`, requestOptions);
     const result = await response.json();
 
-    if (result.users) {
-      setMembers(result.users);
+    if (result.data) {
+      setMembers(result.data);
     }
 
     setLoading(false);
@@ -55,8 +55,8 @@ const TeamMembers = () => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/getuserroles`, requestOptions);
     const result = await response.json();
 
-    if (result.userRoles) {
-      setUserRoles(result.userRoles);
+    if (result.data) {
+      setUserRoles(result.data);
     }
   };
 
