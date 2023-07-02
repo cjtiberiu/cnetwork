@@ -26,10 +26,6 @@ function App() {
     return null;
   });
 
-  useEffect(() => {
-    console.log('userData', userData)
-  }, [userData]);
-
   const dispatchUserEvent = (actionType, payload) => {
     switch (actionType) {
       case 'SET_USER':

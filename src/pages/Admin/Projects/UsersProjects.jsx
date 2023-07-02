@@ -7,6 +7,7 @@ const UsersProjects = () => {
   const [selectedUserId, setSelectedUserId] = useState(0);
   const [selectedProjectId, setSelectedProjectId] = useState(0);
   const [selectedUserProjects, setSelectedUserProjects] = useState(null);
+  const [pricePerHour, setPricePerHour] = useState(0);
   const [displayMessage, setDisplayMessage] = useState('');
 
   useEffect(() => {
@@ -32,8 +33,8 @@ const UsersProjects = () => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/getusers`, requestOptions);
     const result = await response.json();
 
-    if (result.users) {
-      setUsers(result.users);
+    if (result.data) {
+      setUsers(result.data);
     }
   };
 
@@ -50,6 +51,7 @@ const UsersProjects = () => {
     const result = await response.json();
 
     if (result.data) {
+      console.log(result.data)
       setProjects(result.data);
     }
   }
@@ -82,7 +84,7 @@ const UsersProjects = () => {
         'Content-Type': 'application/json',
         authorization: JSON.parse(localStorage.getItem('authToken')),
       },
-      body: JSON.stringify({ userId: selectedUserId, projectId: selectedProjectId }),
+      body: JSON.stringify({ userId: selectedUserId, projectId: selectedProjectId, pricePerHour: pricePerHour }),
     };
 
     const response = await fetch(`${process.env.REACT_APP_API_URL}/addusertoproject`, requestOptions);
@@ -93,7 +95,6 @@ const UsersProjects = () => {
     }
 
     if (response.status == 200) {
-      console.log('success');
       getUserProjects();
     }
   }
@@ -122,7 +123,7 @@ const UsersProjects = () => {
         <Col lg={{ span: 4 }}>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3 mt-3 pb-2 border-bottom">
-              <Form.Select className="mb-3" aria-label="User Types" id="users" name="users" value={selectedUserId} onChange={(e) => setSelectedUserId(e.target.value)}>
+              <Form.Select className="mb-3" aria-label="Users" id="users" name="users" value={selectedUserId} onChange={(e) => setSelectedUserId(e.target.value)}>
                 <option value="0">Alege utilizator</option>
                 {users.map((user) => {
                   return (
@@ -133,17 +134,21 @@ const UsersProjects = () => {
                 })}
               </Form.Select>
             </Form.Group>
-            <Form.Group className="mb-3 mt-3 pb-3 pt-2">
+            <Form.Group className="mb-3 mt-3 pt-2">
               <Form.Select className="mb-3" aria-label="Projects" id="projects" name="projects" value={selectedProjectId} onChange={(e) => setSelectedProjectId(e.target.value)}>
                 <option value="0">Alege Proiect</option>
                 {projects.map((project) => {
                   return (
                     <option value={project.id} key={project.id}>
-                      {project.name}
+                      {project.name} - {project.client.country.currency}
                     </option>
                   );
                 })}
               </Form.Select>
+            </Form.Group>
+            <Form.Group className="mb-3 pb-3">
+              <Form.Label htmlFor="pricePerHour">Pret per ora</Form.Label>
+              <Form.Control type="number" name="pricePerHour" value={pricePerHour} onChange={(e) => setPricePerHour(e.target.value)}></Form.Control>
             </Form.Group>
             <Button onClick={handleSubmit} type="submit">Adauga</Button>
           </Form>

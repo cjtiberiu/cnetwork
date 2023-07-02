@@ -5,7 +5,7 @@ import { Form, Row, Col, Button } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const AddLogModal = (props) => {
+const EditLogModal = (props) => {
   const { showModal, handleClose, selectedLog } = props;
   const { userData } = useContext(UserContext);
   const [formData, setFormData] = useState({
@@ -69,7 +69,7 @@ const AddLogModal = (props) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/updateworklog`, requestOptions);
     const result = await response.json();
 
-    console.log(result);
+    handleClose();
   }
 
   const handleDelete = async (e) => {
@@ -87,7 +87,7 @@ const AddLogModal = (props) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/deleteworklog`, requestOptions);
     const result = await response.json();
 
-    console.log(result);
+    handleClose();
   }
 
   return (
@@ -123,7 +123,7 @@ const AddLogModal = (props) => {
               />
             </Form.Group>
             <div className="d-flex justify-content-between g-1">
-              <Button type="submit" className="w-100 me-1" onClick={handleSubmit}>Add</Button>
+              <Button type="submit" className="w-100 me-1" onClick={handleSubmit}>Edit</Button>
               <Button type="submit" variant="danger" className="w-100 ms-1" onClick={handleDelete}>Delete</Button>
             </div>
           </Form>
@@ -133,4 +133,4 @@ const AddLogModal = (props) => {
   )
 };
 
-export default AddLogModal;
+export default EditLogModal;

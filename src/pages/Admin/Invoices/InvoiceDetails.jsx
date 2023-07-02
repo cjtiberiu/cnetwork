@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Button, Col, Container, Row, Table } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { COMPANY_DATA } from "../../../utils/utils";
-import jsPDF from 'jspdf';
+import { COMPANY_DATA } from "../../../utils/constants";
 import html2pdf from 'html2pdf.js';
 
 const InvoiceDetails = () => {
@@ -27,7 +26,6 @@ const InvoiceDetails = () => {
     const result = await response.json();
 
     if (result.data) {
-      console.log(result.data)
       setInvoiceData(result.data);
     }
   }

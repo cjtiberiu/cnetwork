@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Col, Container, Form, Row, Spinner, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { filterArray } from '../../../utils/utils';
+import { filterArray } from '../../../utils/functions';
 
 const ListProjects = () => {
   const [projects, setProjects] = useState([]);

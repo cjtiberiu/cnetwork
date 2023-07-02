@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Col, Container, Row, Spinner, Form } from 'react-bootstrap';
-import { filterArray } from '../../../utils/utils';
+import { filterArray } from '../../../utils/functions';
 
 const TeamMembers = () => {
   const [members, setMembers] = useState([]);

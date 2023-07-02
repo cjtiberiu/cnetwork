@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { UserContext } from '../../../context';
 import { Container, Table, Form, Row, Col, Button, Alert } from 'react-bootstrap';
-import { MONTHS, APP_INIT_YEAR } from '../../../utils/utils';
+import { MONTHS, APP_INIT_YEAR } from '../../../utils/constants';
 import AddLogModal from './AddLogModal';
 import EditLogModal from './EditLogModal';
 
@@ -46,6 +46,8 @@ const WorkLogs = () => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/getuserworklogs/${userData.id}/${selectedMonth}`, requestOptions);
     const result = await response.json();
 
+    console.log(result);
+
     if (result.data) {
       setWorklogs(result.data);
     }
@@ -67,7 +69,6 @@ const WorkLogs = () => {
   }
 
   const isCurrentMonth = () => {
-    console.log(today.getMonth() + 1 == selectedMonth && today.getFullYear() == selectedYear)
     return today.getMonth() + 1 == selectedMonth && today.getFullYear() == selectedYear;
   }
 

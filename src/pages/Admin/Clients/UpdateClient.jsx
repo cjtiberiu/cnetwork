@@ -23,7 +23,6 @@ const UpdateClient = (props) => {
   useEffect(() => {
     if (selectedClient) {
       const selectedClientObj = clients.find(client => client.id == selectedClient);
-      console.log(selectedClientObj)
 
       setFormData({
         name: selectedClientObj.name,

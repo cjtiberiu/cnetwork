@@ -57,7 +57,9 @@ const AddLogModal = (props) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/addworklog`, requestOptions);
     const result = await response.json();
 
-    console.log(result)
+    if (result.data) {
+      handleClose();
+    }
   }
 
   return (

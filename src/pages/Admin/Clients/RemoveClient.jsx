@@ -10,10 +10,6 @@ const RemoveClient = (props) => {
     getClients();
   }, []);
 
-  useEffect(() => {
-    console.log(selectedClientId);
-  }, [selectedClientId]);
-
   const getClients = async () => {
     const requestOptions = {
       method: 'GET',
@@ -33,7 +29,6 @@ const RemoveClient = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setDisplayMessage('');
 
     const requestOptions = {

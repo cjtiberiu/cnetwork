@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Col, Container, Row, Table, Form, Spinner } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { filterArray } from '../../../utils/utils';
+import { filterArray } from '../../../utils/functions';
 
 const ListUsers = (props) => {
   const [clients, setClients] = useState([]);

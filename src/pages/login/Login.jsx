@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import decodeToken from 'jwt-decode';
 import { UserContext } from '../../context';
@@ -58,7 +58,11 @@ const Login = (props) => {
               Sign In
             </Button>
           </Form>
-          <p className="text-error">{displayResult}</p>
+          {displayResult && (
+            <Alert variant="danger" className="mt-3">
+              <p className="text-error mb-0">{displayResult}</p>
+            </Alert>
+          )}
         </Col>
       </Row>
     </Container>

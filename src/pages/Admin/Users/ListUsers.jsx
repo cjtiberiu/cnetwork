@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Container, Button, Row, Col, Table, Spinner, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { filterArray } from '../../../utils/utils';
+import { filterArray } from '../../../utils/functions';
 
 const ListUsers = (props) => {
   const [users, setUsers] = useState([]);

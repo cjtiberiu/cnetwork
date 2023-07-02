@@ -3,7 +3,7 @@ import { Col, Container, Row, Spinner, Form } from 'react-bootstrap';
 import { ReactComponent as Logo } from '../../../assets/logo.svg';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../../context';
-import { filterArray } from '../../../utils/utils';
+import { filterArray } from '../../../utils/functions';
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { MONTHS, APP_INIT_YEAR, VAT_PERCENTAGE } from "../../../utils/utils";
+import { MONTHS, APP_INIT_YEAR, VAT_PERCENTAGE } from "../../../utils/constants";
 import { Col, Container, Row, Form, ListGroup, Button } from "react-bootstrap";
 
 const CreateInvoice = () => {

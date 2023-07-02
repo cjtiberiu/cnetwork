@@ -70,7 +70,6 @@ const SideNav = () => {
           </div>
         </Collapse>
       </nav>
-      {/* <Button className="sidenav-toggle">Open Admin Panel</Button> */}
     </div>
   );
 };
