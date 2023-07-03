@@ -44,7 +44,7 @@ const UserLayout = (props) => {
       {renderSideNav()}
       <main className="main">
         <Routes>
-          <Route exact path={`/user`} element={<HomePage />} />
+          <Route exact path={`/`} element={<HomePage />} />
           <Route exact path={`/user/projects`} element={<Projects />} />
           <Route exact path={`/user/logs`} element={<WorkLogs />} />
           <Route 

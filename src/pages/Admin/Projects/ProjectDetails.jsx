@@ -61,10 +61,22 @@ const ProjectDetails = (props) => {
           <div className="card p-3">
             <h3>Detalii Proiect</h3>
             <ul className="list-unstyled">
-              <li>Client: {projectDetails.client.name}</li>
-              <li>Tara: {projectDetails.client.country.name}</li>
-              <li>Moneda: {projectDetails.client.country.currency}</li>
-              <li>Tip Proiect: {projectDetails.project_type.type}</li>
+              <li className="d-flex justify-content-between border-bottom py-1">
+                <span>Client:</span>
+                <span>{projectDetails.client.name}</span>
+              </li>
+              <li className="d-flex justify-content-between border-bottom py-1">
+                <span>Tara:</span>
+                <span>{projectDetails.client.country.name}</span>
+              </li>
+              <li className="d-flex justify-content-between border-bottom py-1">
+                <span>Moneda:</span>
+                <span>{projectDetails.client.country.currency}</span>
+              </li>
+              <li className="d-flex justify-content-between border-bottom py-1">
+                <span>Tip Proiect:</span>
+                <span>{projectDetails.project_type.type}</span>
+              </li>
             </ul>
           </div>
         </Col>

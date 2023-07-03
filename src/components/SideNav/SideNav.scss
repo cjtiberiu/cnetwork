@@ -15,6 +15,7 @@
   &:hover {
     transform: translateX(0);
   }
+
   > .sidenav-toggle {
     position: absolute;
     right: 0;
@@ -42,5 +43,12 @@
         transform: rotate(180deg);
       }
     }
+  }
+
+  .mobile-sidenav-toggle {
+    position: fixed;
+    bottom: 200px;
+    right: -80px;
+    z-index: 3000;
   }
 }

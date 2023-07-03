@@ -11,7 +11,7 @@ const SideNav = () => {
   const [showInvoiceOptions, setShowInvoiceOptions] = useState(false);
 
   return (
-    <div className={`sidenav-wrapper show ${showSideNav ? 'show' : ''}`} onMouseOver={() => setShowSideNav(true)} onMouseOut={() => setShowSideNav(false)}>
+    <div className={`sidenav-wrapper ${showSideNav ? 'show' : ''}`} onMouseOver={() => setShowSideNav(true)} onMouseOut={() => setShowSideNav(false)}>
       <h3>Administrare</h3>
       <nav className="sidenav">
         <button className={`link-btn sidenav-dropdown-btn ${showClientOptions ? 'show' : ''}`} onClick={() => setShowClientOptions(!showClientOptions)}>
@@ -70,6 +70,7 @@ const SideNav = () => {
           </div>
         </Collapse>
       </nav>
+      <Button className="mobile-sidenav-toggle d-lg-none" onClick={() => setShowSideNav(!showSideNav)}>Admin</Button>
     </div>
   );
 };

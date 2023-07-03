@@ -46,7 +46,7 @@ const ListUsers = (props) => {
     <Container>
       <h1>Lista Clienti</h1>
       <Row>
-        <Col xs={2}>
+        <Col xs={6} lg={2}>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label className="visually-hidden">Cautare dupa nume</Form.Label>
             <Form.Control 

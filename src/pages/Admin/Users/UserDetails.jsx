@@ -27,6 +27,16 @@ const UserDetails = (props) => {
     }
   }
 
+  const formatDate = (dateToFormat) => {
+    let date = new Date(dateToFormat);
+    let day = String(date.getDate()).padStart(2, '0');
+    let month = String(date.getMonth() + 1).padStart(2, '0');
+    let year = date.getFullYear();
+    let formattedDate = `${day}/${month}/${year}`;
+
+    return formattedDate;
+  }
+
   return userDetails && (
     <Container>
       <h1>{userDetails.email}</h1>
@@ -64,12 +74,30 @@ const UserDetails = (props) => {
           <div className="card p-4">
             <h3>Detalii Proiect</h3>
             <ul className="list-unstyled">
-              <li>Nume Utilizator: {userDetails.firstName} {userDetails.lastName}</li>
-              <li>Email: {userDetails.email}</li>
-              <li>Tip Utilizator: {userDetails.userRole}</li>
-              <li>Functie Utilizator: {userDetails.userType}</li>
-              <li>Data Inceput Contract: {userDetails.contractStartDate}</li>
-              <li>Data Incetare Contract: {userDetails.contractEndDate}</li>
+              <li className="d-flex justify-content-between border-bottom py-1">
+                <span>Nume Utilizator:</span>
+                <span>{userDetails.firstName} {userDetails.lastName}</span>
+              </li>
+              <li className="d-flex justify-content-between border-bottom py-1">
+                <span>Email:</span>
+                <span>{userDetails.email}</span>
+              </li>
+              <li className="d-flex justify-content-between border-bottom py-1">
+                <span>Tip Utilizator:</span>
+                <span>{userDetails.userType}</span>
+              </li>
+              <li className="d-flex justify-content-between border-bottom py-1">
+                <span>Functie Utilizator:</span>
+                <span>{userDetails.userRole}</span>
+              </li>
+              <li className="d-flex justify-content-between border-bottom py-1">
+                <span>Data Inceput Contract:</span>
+                <span>{userDetails.contractStartDate ? formatDate(userDetails.contractStartDate) : '-'}</span>
+              </li>
+              <li className="d-flex justify-content-between border-bottom py-1">
+                <span>Data Incetare Contract:</span>
+                <span>{userDetails.contractEndDate ? formatDate(userDetails.contractEndDate) : '-'}</span>
+              </li>
             </ul>
           </div>
         </Col>

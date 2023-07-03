@@ -140,8 +140,8 @@ const UpdateUser = (props) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/getusers`, requestOptions);
     const result = await response.json();
 
-    if (result.users) {
-      setUsers(result.users);
+    if (result.data) {
+      setUsers(result.data);
     }
   };
 

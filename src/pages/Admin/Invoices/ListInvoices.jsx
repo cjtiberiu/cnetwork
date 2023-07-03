@@ -29,7 +29,7 @@ const ListInvoices = () => {
   return (
     <Container>
       <h1>Lista Facturi</h1>
-      <Table striped bordered hover>
+      <Table striped bordered hover responsive>
         <thead>
           <tr>
             <th>ID</th>

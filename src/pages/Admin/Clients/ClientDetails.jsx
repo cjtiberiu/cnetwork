@@ -54,12 +54,20 @@ const ClientDetails = (props) => {
             </tbody>
           </Table>
         </Col>
-        <Col>
-          <h3>Detalii Client</h3>
-          <ul className="list-unstyled">
-            <li>Tara: {clientDetails.country.name}</li>
-            <li>Moneda: {clientDetails.country.currency}</li>
-          </ul>
+        <Col lg={{ span: 4, offset: 1 }}>
+          <div className="card p-3">
+            <h3>Detalii Client</h3>
+            <ul className="list-unstyled">
+              <li className="d-flex justify-content-between border-bottom py-1">
+                <span>Tara:</span>
+                <span>{clientDetails.country.name}</span>
+              </li>
+              <li className="d-flex justify-content-between border-bottom py-1">
+                <span>Moneda:</span>
+                <span>{clientDetails.country.currency}</span>
+              </li>
+            </ul>
+          </div>
         </Col>
       </Row>
     </Container>

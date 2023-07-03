@@ -67,7 +67,7 @@ const Projects = () => {
   return (
     <Container>
       <Row>
-        <Col xs={2} className="px-2">
+        <Col xs={6} lg={2} className="px-2">
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label className="visually-hidden">Cautare dupa nume</Form.Label>
             <Form.Control 
@@ -78,7 +78,7 @@ const Projects = () => {
             />
           </Form.Group>
         </Col>
-        <Col xs={2} className="px-2">
+        <Col xs={6} lg={2} className="px-2">
           <Form.Group className="mb-3">
             <Form.Select 
               aria-label="type" 

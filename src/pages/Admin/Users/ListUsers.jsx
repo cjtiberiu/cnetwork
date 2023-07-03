@@ -40,8 +40,8 @@ const ListUsers = (props) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/getusers`, requestOptions);
     const result = await response.json();
 
-    if (result.users) {
-      setUsers(result.users);
+    if (result.data) {
+      setUsers(result.data);
     }
 
     setLoading(false);
@@ -85,7 +85,7 @@ const ListUsers = (props) => {
     <Container>
       <h1>Show users</h1>
       <Row>
-        <Col xs={2}>
+        <Col xs={4} lg={2}>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label className="visually-hidden">Cautare dupa nume/email</Form.Label>
             <Form.Control 
@@ -96,7 +96,7 @@ const ListUsers = (props) => {
             />
           </Form.Group>
         </Col>
-        <Col xs={2} className="px-2">
+        <Col xs={4} lg={2} className="px-2">
           <Form.Group className="mb-3">
             <Form.Select 
               aria-label="type" 
@@ -116,7 +116,7 @@ const ListUsers = (props) => {
             </Form.Select>
           </Form.Group>
         </Col>
-        <Col xs={2} className="px-2">
+        <Col xs={4} lg={2} className="px-2">
           <Form.Group className="mb-3">
             <Form.Select 
               aria-label="type" 
@@ -146,7 +146,7 @@ const ListUsers = (props) => {
             </Spinner>
           </div>
         ) : (
-          <Table striped bordered hover>
+          <Table striped bordered hover responsive>
             <thead>
               <tr>
                 <th>Nume</th>

@@ -77,7 +77,7 @@ const WorkLogs = () => {
       <Container>
         <Form>
           <Row>
-            <Col xs={2}>
+            <Col xs={4} lg={2}>
               <Form.Group className="mb-3">
                 <Form.Select aria-label="Month" id="months" name="months" value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)}>
                   {MONTHS.map((month) => {
@@ -90,7 +90,7 @@ const WorkLogs = () => {
                 </Form.Select>
               </Form.Group>
             </Col>
-            <Col xs={2}>
+            <Col xs={4} lg={2}>
               <Form.Group className="mb-3">
                 <Form.Select aria-label="Year" id="year" name="year" value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
                   {years.map((year) => {
@@ -103,7 +103,7 @@ const WorkLogs = () => {
                 </Form.Select>
               </Form.Group>
             </Col>
-            <Col xs={2}>
+            <Col xs={2} lg={2}>
               <Form.Group className="mb-3">
                 <Button onClick={handleShowAddModal}>Add</Button>
               </Form.Group>
@@ -119,7 +119,7 @@ const WorkLogs = () => {
             </Row>
           )}
         </Form>
-        <Table striped bordered hover>
+        <Table striped bordered hover responsive>
           <thead>
             <tr>
               <th>Date</th>

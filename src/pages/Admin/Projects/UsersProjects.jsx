@@ -120,7 +120,7 @@ const UsersProjects = () => {
     <Container>
       <h1>Asignare Proiect la Utilizator</h1>
       <Row>
-        <Col lg={{ span: 4 }}>
+        <Col xs={{ span: 12 }} lg={{ span: 4 }}>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3 mt-3 pb-2 border-bottom">
               <Form.Select className="mb-3" aria-label="Users" id="users" name="users" value={selectedUserId} onChange={(e) => setSelectedUserId(e.target.value)}>
