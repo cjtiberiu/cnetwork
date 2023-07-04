@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { MONTHS, APP_INIT_YEAR, VAT_PERCENTAGE } from "../../../utils/constants";
-import { Col, Container, Row, Form, ListGroup, Button } from "react-bootstrap";
+import { Col, Container, Row, Form, ListGroup, Button, Alert } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const CreateInvoice = () => {
   const [clients, setClients] = useState([]);
@@ -24,6 +25,8 @@ const CreateInvoice = () => {
   const [selectedClient, setSelectedClient] = useState(0);
   const [invoiceData, setInvoiceData] = useState([]);
   const [invoiceClientData, setInvoiceClientData] = useState(null);
+  const [createInvoiceSuccess, setCreateInvoiceSuccess] = useState('');
+  const [newInvoiceId, setNewInvoiceId] = useState(0);
 
   useEffect(() => {
     getClients();
@@ -31,6 +34,9 @@ const CreateInvoice = () => {
 
   useEffect(() => {
     getClientInvoiceData();
+    if (selectedClient != 0) {
+      setNewInvoiceId(0);
+    }
   }, [selectedClient, selectedMonth, selectedYear])
 
   const getClients = async () => {
@@ -73,7 +79,7 @@ const CreateInvoice = () => {
       vatPercentage: VAT_PERCENTAGE,
       clientId: invoiceClientData.id
     }
-
+  
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -83,15 +89,26 @@ const CreateInvoice = () => {
       body: JSON.stringify(invoiceRequestData),
     };
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/invoices/create`, requestOptions);
-    const result = await response.json();
-
-    for (const project of invoiceData) {
-      for (const user of project.users) {
-        if (user.checked) {
-          addInvoiceEntry(result.data, user, project);
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/invoices/create`, requestOptions);
+      const result = await response.json();
+    
+      const invoicePromises = [];
+    
+      for (const project of invoiceData) {
+        for (const user of project.users) {
+          if (user.checked) {
+            invoicePromises.push(addInvoiceEntry(result.data, user, project));
+          }
         }
       }
+
+      await Promise.allSettled(invoicePromises);
+      setSelectedClient(0);
+      setNewInvoiceId(result.data.id);
+      setCreateInvoiceSuccess('Factura a fost creata si toate intrarile au fost adaugate cu success');
+    } catch(err) {
+      throw err;
     }
   }
 
@@ -113,8 +130,14 @@ const CreateInvoice = () => {
       body: JSON.stringify(invoiceEntryData),
     };
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/invoices/addentry`, requestOptions);
-    const result = await response.json();
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/invoices/addentry`, requestOptions);
+      const result = await response.json();
+    } catch(err) {
+      throw err;
+    }
+
+
   }
 
   const calculateProjectTotals = (project) => {
@@ -200,29 +223,47 @@ const CreateInvoice = () => {
             </Col>
           </Row>
         </Form>
-        <CheckboxGroup invoiceData={invoiceData} setInvoiceData={setInvoiceData} />
-        <ListGroup as="ol" numbered>
-          {invoiceData.map((project, projectIndex) => {
-            const { projectTotalAmount, projectTotalHours } = calculateProjectTotals(project);
-            return project.checked && (
-              <React.Fragment key={`project-${projectIndex}`}>
-                <ListGroup.Item
-                  as="li"
-                  className="d-flex justify-content-between align-items-start"
-                >
-                  <div className="ms-2 me-auto">
-                    <div className="fw-bold">{project.name} | Suma Totala: {projectTotalAmount} | Ore Lucrate: {projectTotalHours}</div>
-                    {project.users.map((user, userIndex) => {
-                      return user.checked && <div key={`i-${projectIndex}${userIndex}`}>{user.name} | Suma Totala: {user.totalAmount} | Ore Lucrate: {user.totalHours}</div>
-                    })}
-                  </div>
-                </ListGroup.Item>
-              </React.Fragment>
-            )
-          })}
-        </ListGroup>
-        <p><strong>Total Suma: {invoiceTotalAmount}</strong> | <strong>Total Ore Lucrate: {invoiceTotalHours}</strong></p>
-        <Button onClick={createInvoice}>Create</Button>
+        {selectedClient != 0 && (
+          <Row className="mt-4">
+            <Col lg={6}>
+              <CheckboxGroup invoiceData={invoiceData} setInvoiceData={setInvoiceData} />
+            </Col>
+            <Col lg={6}>
+              <ListGroup as="ol" numbered>
+                {invoiceData.map((project, projectIndex) => {
+                  const { projectTotalAmount, projectTotalHours } = calculateProjectTotals(project);
+                  return project.checked && (
+                    <React.Fragment key={`project-${projectIndex}`}>
+                      <ListGroup.Item
+                        as="li"
+                        className="d-flex justify-content-between align-items-start"
+                      >
+                        <div className="ms-2 me-auto">
+                          <div className="fw-bold">{project.name} | Suma Totala: {projectTotalAmount} | Ore Lucrate: {projectTotalHours}</div>
+                          {project.users.map((user, userIndex) => {
+                            return user.checked && <div key={`i-${projectIndex}${userIndex}`}>{user.name} | Suma Totala: {user.totalAmount} | Ore Lucrate: {user.totalHours}</div>
+                          })}
+                        </div>
+                      </ListGroup.Item>
+                    </React.Fragment>
+                  )
+                })}
+              </ListGroup>
+            </Col>
+          </Row>
+        )}
+        {createInvoiceSuccess && (
+          <Alert variant="success" className="mt-3">
+            <div>{createInvoiceSuccess}. <Link to={`/dashboard/admin/invoices/invoice/${newInvoiceId}`}>Vezi factura</Link></div>
+          </Alert>
+        )}
+        {selectedClient != 0 && (
+          <>
+            <p><strong>Total Suma: {invoiceTotalAmount}</strong> | <strong>Total Ore Lucrate: {invoiceTotalHours}</strong></p>
+            <Button onClick={createInvoice}>Create</Button>  
+          </>
+        )}
+
       </Container>
     </>
   )

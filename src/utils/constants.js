@@ -1,31 +1,31 @@
 export const MONTHS = [
   {
     id: 1,
-    month: 'January'
+    month: 'Ianuarie'
   },
   {
     id: 2,
-    month: 'February'
+    month: 'Februarie'
   },
   {
     id: 3,
-    month: 'March'
+    month: 'Martie'
   },
   {
     id: 4,
-    month: 'April'
+    month: 'Aprilie'
   },
   {
     id: 5,
-    month: 'May'
+    month: 'Mai'
   },
   {
     id: 6,
-    month: 'June'
+    month: 'Iunie'
   },
   {
     id: 7,
-    month: 'July'
+    month: 'Iulie'
   },
   {
     id: 8,
@@ -33,19 +33,19 @@ export const MONTHS = [
   },
   {
     id: 9,
-    month: 'September'
+    month: 'Septembrie'
   },
   {
     id: 10,
-    month: 'October'
+    month: 'Octombrie'
   },
   {
     id: 11,
-    month: 'November'
+    month: 'Noiembrie'
   },
   {
     id: 12,
-    month: 'December'
+    month: 'Decembrie'
   },
 ];
 

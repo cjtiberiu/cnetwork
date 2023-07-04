@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Button, Col, Container, Row, Table } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { COMPANY_DATA } from "../../../utils/constants";
 import html2pdf from 'html2pdf.js';
 
@@ -8,6 +8,7 @@ const InvoiceDetails = () => {
   const { invoiceId } = useParams();
   const [invoiceData, setInvoiceData] = useState(null);
   const invoiceTemplateRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getInvoiceData();
@@ -41,6 +42,25 @@ const InvoiceDetails = () => {
     };
   
     html2pdf().set(options).from(invoiceTemplate).save();
+  }
+
+  const deleteInvoice = async () => {
+    const requestOptions = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: JSON.parse(localStorage.getItem('authToken')),
+      },
+    };
+
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/invoices/delete/${invoiceId}`, requestOptions);
+      const result = await response.json();
+  
+      navigate('/dashboard/admin/invoices/list');
+    } catch(err) {
+      console.log(err);
+    }
   }
 
   return (
@@ -116,8 +136,9 @@ const InvoiceDetails = () => {
         </Row>
       )}
       <Row>
-        <Col className="text-end">
-          <Button className="mt-3 ms-auto" onClick={generatePdf}>Descarca PDF</Button>
+        <Col className="text-end mt-3 ">
+          <Button variant="danger me-2" onClick={deleteInvoice}>Sterge</Button>
+          <Button className="ms-auto" onClick={generatePdf}>Descarca PDF</Button>
         </Col>
       </Row>
     </Container>
