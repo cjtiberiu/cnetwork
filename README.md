@@ -1,5 +1,22 @@
-# Getting Started with Create React App
+# Project Setup
 
+## Requirements
+1. Node version > 18.7.0
+2. NPM version > 8.15.0
+3. API setup. This project is based on [terra-api](https://github.com/cjtiberiu/terra-api).
+4. Environment variables.
+```
+REACT_APP_API_URL= (the api url from terra-api setup)
+```
+
+<br/>
+The admin menu can be triggered by hovering on the left side of the browser window. (This will be improved in a later phase).
+
+<br/>
+<br/>
+<br/>
+
+# Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
